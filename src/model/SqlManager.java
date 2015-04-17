@@ -55,7 +55,9 @@ public class SqlManager {
 		}
 		
 	}
-	/** public boolean addcourse(Course course)
+	
+	/*Function for addcourse By ChangMing*/
+	 public boolean addcourse(Course course)
 	{
 		Connection conn=ConnectSql();
 		Statement st; 
@@ -75,6 +77,6 @@ public class SqlManager {
 			return false;	
 		}
 		
-	}*/
+	}
 }
 
