@@ -6,7 +6,7 @@ public class Course {
 	private String CourseId;
 	private String CourseAPPId;
 	private String Provider;
-
+//
 	
 	public String getCourseId() {
 		return CourseId;
