@@ -3,30 +3,30 @@ package model;
 
 
 public class Post {
-	private int CommentListId;
-	private int UserId;
+	private String CommentListId;
+	private String UserId;
 	private String PostTitle;
 	private String PostContent;
 	
 
 
-	public int getCommentListId() {
+	public String getCommentListId() {
 		return CommentListId;
 	}
 
 
 
-	public void setCommentListId(int commentListId) {
+	public void setCommentListId(String commentListId) {
 		CommentListId = commentListId;
 	}
 
 
-	public int getUserId() {
+	public String getUserId() {
 		return UserId;
 	}
 
 
-	public void setUserId(int userId) {
+	public void setUserId(String userId) {
 		UserId = userId;
 	}
 
@@ -55,7 +55,7 @@ public class Post {
 	 * @param postTitle
 	 * @param postContent
 	 */
-	public Post(int commentListId, int userId, String postTitle,
+	public Post(String commentListId, String userId, String postTitle,
 			String postContent) {
 		super();
 		CommentListId = commentListId;

@@ -9,15 +9,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import library.MD5;
-import model.Course;
+import model.Post;
 import model.SqlManager;
 
-public class AddCourse extends HttpServlet {
+public class AddPost extends HttpServlet {
 
 	/**
 	 * Constructor of the object.
 	 */
-	public AddCourse() {
+	public AddPost() {
 		super();
 	}
 
@@ -56,19 +56,19 @@ public class AddCourse extends HttpServlet {
 	 */
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		 Course newCourse = new Course();
-		 
-	     String courseId = request.getParameter("CID");
-	     String courseappId = request.getParameter("CAPPID");
-	     String provider = request.getParameter("PER");
-	
-	     newCourse.setCourseId(courseId);
-	     newCourse.setCourseAPPId(courseappId);
-	     newCourse.setProvider(provider); 
+		 Post NewPost = new Post();
+		 String PostContent = request.getParameter("PostContent");
+	     String PostTitle = request.getParameter("PostTitle");
+	     String CommentListId = request.getParameter("CommentListId");
 	     
-	    
+	     NewPost.setPostContent(PostContent);
+	     NewPost.setPostTitle(PostTitle);
+	     NewPost.setCommentListId(CommentListId);
+	   
 	     SqlManager sql=new SqlManager();
-	     Boolean res = sql.addcourse(newCourse);
+	     Boolean res = sql.AddPost(NewPost);
+	     
+	     
 	}
 
 	/**
