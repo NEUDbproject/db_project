@@ -15,7 +15,7 @@ public class SqlManager {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			try {
-				conn=DriverManager.getConnection("jdbc:mysql://107.161.162.77:3306/app_dbproject","root","delete250");
+				conn=DriverManager.getConnection("jdbc:mysql://db4free.net:3306/appdbproject","macctown","appdbproject");
 				System.out.println("connect Succ !");  
 				return conn;
 			} catch (SQLException e) {
