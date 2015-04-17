@@ -55,5 +55,26 @@ public class SqlManager {
 		}
 		
 	}
+	/** public boolean addcourse(Course course)
+	{
+		Connection conn=ConnectSql();
+		Statement st; 
+		try{
+			//System.out.println(Rname); 
+			//System.out.println(Rpwd); 
+			String sql = "insert into Course(CourseId, CourseAPPId, Provider)VALUES('"+course.getCourseId()+"','"+course.getCourseAPPId()+"','"+course.getProvider()+"')";
+			//System.out.println(sql); 
+	        st = (Statement) conn.createStatement();
+	        st.executeUpdate(sql);
+	        conn.close();
+	        return true;
+        }
+		catch(SQLException e)
+		{
+			System.out.println(e); 
+			return false;	
+		}
+		
+	}*/
 }
 
