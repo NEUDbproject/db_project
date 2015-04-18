@@ -19,7 +19,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- ������3���meta������*������*���������������������������������������*������*��������������� -->
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="http://v3.bootcss.com/favicon.ico">
@@ -31,7 +30,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	
 	<!-- Latest compiled and minified JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-    <title>Signin Template for Bootstrap</title>
+    <title>Register</title>
 
   </head>
 
@@ -44,7 +43,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <h1 class="form-signin-heading text-success text-left" style="margin-left:200px">
   <span class="glyphicon glyphicon-cloud" aria-hidden="true"></span>
   Register</h1>
-  <div class="clearfix" style="margin-bottom: 10px;"></div>   <!-- ������������ -->
+  <div class="form-group">
+   <label for="inputEmail3" class="col-sm-2 control-label text-success">Email</label>
+   <div class="col-sm-4 form-group has-success">    
+  		<input type="text" class="form-control" id="inputEmail1"  placeholder="Email" name="email">
+    </div>
+  </div>
+  
+  <div class="clearfix" style="margin-bottom: 10px;"></div>   
     <label for="inputFirstName3" class="col-sm-2 control-label text-success">FirstName</label>
     <div class="col-sm-4 form-group has-success">    
   <input type="text" class="form-control" id="inputFirstName1"  placeholder="FirstName" name="fname">
@@ -68,13 +74,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    <div class="col-sm-4 form-group has-success">    
   		<input type="text" class="form-control" id="inputAttribute1"  placeholder="Confirm Password" name="cpwd">
     </div>
- </div>
-        <div class="form-group">
-    <label for="inputEmail3" class="col-sm-2 control-label text-success">Email</label>
-   <div class="col-sm-4 form-group has-success">    
-  		<input type="text" class="form-control" id="inputEmail1"  placeholder="Email" name="email">
-    </div>
-  </div>  
+ </div>  
   <div class="form-group">
     <div class="col-sm-offset-2 col-sm-4">
       <div class="checkbox">

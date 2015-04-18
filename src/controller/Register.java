@@ -7,6 +7,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import library.MD5;
 import model.SqlManager;
@@ -70,7 +71,20 @@ public class Register extends HttpServlet {
 	     
 	    
 	     SqlManager sql=new SqlManager();
-	     Boolean res = sql.registor(newUser);
+	     int res = sql.registor(newUser);
+	     if(res > 0 ){
+	    	 System.out.println("Create User Succ!");
+	    	 HttpSession session = request.getSession(true);
+	    	 session.setAttribute("useremail", email);
+	    	 session.setAttribute("userId", res);
+	    	 session.setAttribute("Type", "User");
+	    	 response.sendRedirect("customer.jsp");
+		     return;
+	     }else if(res == -1){
+	    	 System.out.println("Create User Succ!");
+	    	 return;
+	     }
+	     
 	}
 
 	/**

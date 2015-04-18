@@ -34,26 +34,55 @@ public class SqlManager {
 	}
 	
 	
-	public boolean registor(User user)
+	public int registor(User user)
 	{
 		Connection conn=ConnectSql();
 		Statement st; 
+		int userId = 0;
 		try{
-			//System.out.println(Rname); 
-			//System.out.println(Rpwd); 
 			String sql = "insert into User(FirstName, LastName, PassWord, Email)VALUES('"+user.getFirstName()+"','"+user.getLastName()+"','"+user.getPassWord()+"','"+user.getEmail()+"')";
 			//System.out.println(sql); 
 	        st = (Statement) conn.createStatement();
 	        st.executeUpdate(sql);
 	        conn.close();
-	        return true;
+	        
+	        userId = findUserIdByEmail(user.getEmail());
+	        return userId;
         }
 		catch(SQLException e)
 		{
 			System.out.println(e); 
-			return false;	
+			return -1;	
 		}
 		
+	}
+	
+	/*authour Weiz */
+	/*function Finad a user by his email and return only his ID  */
+	public int findUserIdByEmail(String email)
+	{
+		Connection conn=ConnectSql();
+		Statement st; 
+		String sql="";
+		int resId = 0;
+		try {  
+			sql = "select UserId from User where Email='"+email+"'";
+            st = (Statement) conn.createStatement();  
+            ResultSet rs = st.executeQuery(sql); 
+            while(rs.next())
+            {
+    
+            	resId = rs.getInt("UserId");
+	           
+            }
+            conn.close();   
+    		return resId;
+    		
+              
+        } catch (SQLException e) {  
+        	System.out.println(e);
+            return -1;
+        }
 	}
 	
 	/*Function for addcourse */
