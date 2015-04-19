@@ -173,8 +173,9 @@ public class SqlManager {
 		 
 		 
 		 try{
-			 String sql = "Select * from User";
+			 String sql = "select * from User";
 			 st = (Statement) conn.createStatement();  
+			 
 	         ResultSet res = st.executeQuery(sql);   
 	         while (res.next()) { 
 	        	User user =new User();
