@@ -1,4 +1,8 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
 <html>
   <head>
     <!-- Latest compiled and minified CSS -->
@@ -8,8 +12,18 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
 	
 	<!-- Latest compiled and minified JavaScript -->
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-	<title>My JSP 'title.jsp' starting page</title>
+	<script src="bootstrap.min.js"></script>
+	<script src="bootstrap.js"></script>
+	<link rel="stylesheet" href="bootstrap.min.css">
+	<title><%
+		String title="";
+		if(session.getAttribute("title")==null){
+			title = "OCE|DBproject";
+		}
+		else{
+			title= request.getSession().getAttribute("title").toString();
+		}
+	 %></title>
     
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
@@ -25,7 +39,6 @@
 <nav class="navbar navbar-default">
  <div class="container">
   <div class="center-block">
-    <img src="daf" class="img-responsive" alt=""/> 
     </div> 
  
 
@@ -37,7 +50,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">Project name</a>
+      <a class="navbar-brand" href="#">OCE</a>
        
     </div>
 
@@ -46,7 +59,7 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
       
-        <li><a href="#">Link</a></li>
+        <li><a href="#">Home</a></li>
         <li><a href="#">Link</a></li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
@@ -70,9 +83,39 @@
         </div>
          <button class="btn btn-large btn-primary" type="button">Submit</button>
       </form>
-        <li><a href="register.jsp">Register</a></li>
-        <li><a href="signin.jsp">Sign in</a></li>
-      </ul>
+      <%
+      	if(session.getAttribute("userId")==null){
+      %>
+      	<li><a href="register.jsp">Register</a></li>
+        <li><a href="login.jsp">Sign in</a></li>
+        </ul>
+      <%
+      	}else{
+	      	String userEmail = request.getSession().getAttribute("userEmail").toString();
+		  	String userId = request.getSession().getAttribute("userId").toString();
+		  	System.out.println(userEmail);
+	  		System.out.println(userId);
+	  %>
+		<div class="btn-group">
+						 <button class="btn"><%=userEmail %></button> <button data-toggle="dropdown" class="btn dropdown-toggle"><span class="caret"></span></button>
+						<ul class="dropdown-menu">
+							<li>
+								<a href="#">操作</a>
+							</li>
+							<li>
+								<a href="#">设置栏目</a>
+							</li>
+							<li>
+								<a href="#">更多设置</a>
+							</li>
+							<li class="divider">
+							</li>
+						</ul>
+					</div>
+		<a href="logoff.jsp">Log Off</a>		
+	<%
+	  }
+     %>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>

@@ -47,6 +47,7 @@ public class SqlManager {
 	        conn.close();
 	        
 	        userId = findUserIdByEmail(user.getEmail());
+	        System.out.println("The new userId: "+userId);
 	        return userId;
         }
 		catch(SQLException e)
@@ -83,6 +84,39 @@ public class SqlManager {
         	System.out.println(e);
             return -1;
         }
+	}
+	
+	/*authour Weiz */
+	/*function Login with users email and pwd  */
+	public boolean LoginSql(String Email,String Pwd) 
+	{
+		Connection conn=ConnectSql();
+		Statement st = null;  
+		String res="";
+		int resCount=0;
+		
+	    String sql = "select * from User where Email='"+Email+"' and PassWord='"+Pwd+"'"; 
+	    System.out.println(sql);
+	    try {
+			st = (Statement)conn.createStatement();
+			ResultSet rs = st.executeQuery(sql);
+			rs.last();
+			resCount = rs.getRow();
+			System.out.println("resCount: "+resCount);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}    
+
+	    if(resCount==1) {  
+	        return true;
+	    }  
+	    else{
+	    	return false;
+	    	
+	    }
+	  
+		
 	}
 	
 	/*Function for addcourse */

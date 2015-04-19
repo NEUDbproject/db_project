@@ -14,6 +14,13 @@
     <description>Add Course for User</description>
     <servlet-class>controller.AddCourse</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>Login</servlet-name>
+    <display-name>Login</display-name>
+    <description>Login as a member</description>
+    <servlet-class>controller.Login</servlet-class>
+  </servlet>
+
   <servlet-mapping>
     <servlet-name>Register</servlet-name>
     <url-pattern>/Register</url-pattern>
@@ -21,6 +28,10 @@
     <servlet-mapping>
     <servlet-name>AddCourse</servlet-name>
     <url-pattern>/AddCourse</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Login</servlet-name>
+    <url-pattern>/Login</url-pattern>
   </servlet-mapping>
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>

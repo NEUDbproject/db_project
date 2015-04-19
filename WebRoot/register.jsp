@@ -8,9 +8,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <html>
   <head>
     <base href="<%=basePath%>">
-    
-    <title>My JSP 'register.jsp' starting page</title>
-    
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
 	<meta http-equiv="expires" content="0">    
@@ -65,14 +62,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       <div class="form-group">
     <label for="inputPassWord3" class="col-sm-2 control-label text-success">PassWord</label>
     <div class="col-sm-4 form-group has-success">    
-  		<input type="text" class="form-control" id="inputPassWord1"  placeholder="PassWord" name="pwd">
+  		<input type="password" class="form-control" id="inputPassWord1"  placeholder="PassWord" name="pwd">
     </div>
 
   </div>
       <div class="form-group">
     <label for="inputPassWord3" class="col-sm-2 control-label text-success">Password</label>
    <div class="col-sm-4 form-group has-success">    
-  		<input type="text" class="form-control" id="inputAttribute1"  placeholder="Confirm Password" name="cpwd">
+  		<input type="password" class="form-control" id="inputAttribute1"  placeholder="Confirm Password" name="cpwd">
     </div>
  </div>  
   <div class="form-group">

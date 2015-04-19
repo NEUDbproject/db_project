@@ -13,12 +13,12 @@ import library.MD5;
 import model.SqlManager;
 import model.User;
 
-public class Register extends HttpServlet {
+public class Login extends HttpServlet {
 
 	/**
 	 * Constructor of the object.
 	 */
-	public Register() {
+	public Login() {
 		super();
 	}
 
@@ -57,37 +57,28 @@ public class Register extends HttpServlet {
 	 */
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		 User newUser = new User();
 		 MD5 md5er=new MD5();
-	     String firstname = request.getParameter("fname");
-	     String lastname = request.getParameter("lname");
-	     String pwd = request.getParameter("pwd").trim();
-	     String MDpwd=md5er.getMD5Str(pwd);
 	     String email = request.getParameter("email");
-	     newUser.setFirstName(firstname);
-	     newUser.setLastName(lastname);
-	     newUser.setPassWord(MDpwd); 
-	     newUser.setEmail(email);
+	     String pwd = request.getParameter("lpwd").trim();
+	     String MDpwd=md5er.getMD5Str(pwd);
+	     System.out.println("Email: "+email+"  MDpwd: "+MDpwd);
 	     
-	    
 	     SqlManager sql=new SqlManager();
-	     int res = sql.registor(newUser);
-	     if(res > 0 ){
-	    	 System.out.println("Create a User Succ!");
-	    	 HttpSession session = request.getSession();
+	     if(sql.LoginSql(email, MDpwd)==true){
+	    	 System.out.println("Login Succ!");
+	    	 int userId = sql.findUserIdByEmail(email);
+	    	 HttpSession session = request.getSession(true);
+	    	 session.setAttribute("userId", userId);
 	    	 session.setAttribute("userEmail", email);
-	    	 System.out.println(email);
-	    	 session.setAttribute("userId", res);
-	    	 System.out.println(res);
-	    	 session.setAttribute("Type", "User");
-	    	 session.setAttribute("title", "Online Course Evaluation");
-	    	 response.sendRedirect("index.jsp");
-		     return;
-	     }else if(res == -1){
-	    	 System.out.println("Create a User Failed!");
+	    	 session.setAttribute("title", "OCE|DBproject");
+    		 response.sendRedirect("index.jsp");
+    		 return;
+	     }
+	     else{
+	    	 System.out.println("Login Failed!");
+	    	 response.sendRedirect("loginFail.jsp");
 	    	 return;
 	     }
-	     
 	}
 
 	/**
