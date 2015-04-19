@@ -12,8 +12,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
 	
 	<!-- Latest compiled and minified JavaScript -->
-	<script src="bootstrap.min.js"></script>
-	<script src="bootstrap.js"></script>
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
+
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="http://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 	<link rel="stylesheet" href="bootstrap.min.css">
 	<title><%
 		String title="";
@@ -58,6 +61,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
+      
+      <!--Modified by Junwei Zheng. Completed  -->
       
         <li><a href="#">Home</a></li>
         <li><a href="#">Link</a></li>
