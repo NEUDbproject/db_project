@@ -61,7 +61,7 @@ public class UserManager extends HttpServlet {
 			throws ServletException, IOException {
 		    SqlManager sql=new SqlManager();
 		    List<User> list = (ArrayList<User>) sql.readAllUsers();
-		    request.setAttribute("list", list);
+		    request.setAttribute("ListUser", list);
 		    request.getRequestDispatcher("usermanage.jsp").forward(request, response);
 		
 		

@@ -1,7 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-    
-    
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
+ <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>   
     <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -26,16 +25,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<meta http-equiv="description" content="This is my page">
 	
     
-<!-- 新 Bootstrap 核心 CSS 文件 -->
+<!-- æ° Bootstrap æ ¸å¿ CSS æä»¶ -->
 <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css">
 
-<!-- 可选的Bootstrap主题文件（一般不用引入） -->
+<!-- å¯éçBootstrapä¸»é¢æä»¶ï¼ä¸è¬ä¸ç¨å¼å¥ï¼ -->
 <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
 
-<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+<!-- jQueryæä»¶ãå¡å¿å¨bootstrap.min.js ä¹åå¼å¥ -->
 <script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
 
-<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+<!-- ææ°ç Bootstrap æ ¸å¿ JavaScript æä»¶ -->
 <script src="http://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 
 <script src="./Blog Template for Bootstrap_files/ie-emulation-modes-warning.js"></script>
@@ -96,85 +95,24 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 </tr>
               </thead>
               <tbody>
+              <c:forEach items="${userlist}" var="user">
                 <tr>
-                  <td>1,001</td>
-                  <td>Lorem</td>
-                  <td>ipsum</td>
-                  <td>dolor</td>
-                  <td>dolor</td>
-                  <td>dolor</td>
-                  <td>dolor</td>
+                <td>${user.id}</td>  
+                <td>${user.firstname}</td>  
+                <td>${user.lastname}</td>  
+                <td>${user.email}</td>  
                   <td>
                   <div class="col-xs-offset-3">
          			<!-- Button trigger modal -->
 <button class="btn btn-primary btn-xs" type="submit" data-toggle="modal" data-target="#myModal">Add</button>
 <!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h2 class="modal-title text-primary" id="myModalLabel">Add User</h2>
-      </div>
-      <div class="modal-body" style="height:300px; width:450px;">
-
-     <form class="form-horizontal">
-  <div class="form-group">
-      <label for="inputFirstName3" class="col-sm-2 control-label text-danger">UserId</label>
-    <div class="col-sm-4">
-      <label for="inputFirstName3" class="control-label text-left text-primary">001</label>
-    </div>
-    <label for="inputFirstName3" class="col-sm-2 control-label text-danger">FirstName</label>
-    <div class="col-sm-4">
-      <label for="inputFirstName3" class="control-label text-left text-primary">Zhang</label>
-    </div>
-  </div>
-  <div class="form-group">
-    <label for="inputLastName3" class="col-sm-2 control-label text-primary">LastName</label>
-    <div class="col-sm-4">
-      <label for="inputFirstName3" class=" control-label  text-primary">Sanfeng</label>
-    </div>
-  </div>
-    <div class="form-group">
-    <label for="inputBirthDay3" class="col-sm-2 control-label text-info">Birth</label>
-    <div class="col-sm-4">
-      <label for="inputFirstName3" class=" control-label  text-primary">1900-23-34</label>
-    </div>
-  </div>
-      <div class="form-group">
-    <label for="inputPassWord3" class="col-sm-2 control-label text-success">PassWord</label>
-    <div class="col-sm-4">
-      <label for="inputFirstName3" class=" control-label  text-primary">123456</label>
-    </div>
-  </div>
-      <div class="form-group">
-    <label for="inputPassWord3" class="col-sm-2 control-label text-warning">Attribute</label>
- <div class="col-sm-4">
-<label for="inputFirstName3" class=" control-label  text-primary">Student</label>
-  </div>
- </div>
-        <div class="form-group">
-    <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
-    <div class="col-sm-4">
-      <label for="inputFirstName3" class=" control-label  text-primary">1231@qq.com</label>
-    </div>
-  </div>
-
-</form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Confirm Add</button>
-      </div>
-    </div>
-  </div>
-</div><!--zhzushi-->
+          <button class="btn btn-primary btn-xs" type="submit">Add</button>
          <button class="btn btn-primary btn-xs" type="submit">Delete</button>
          <button class="btn btn-primary btn-xs" type="submit">Edit</button>
 			</div>
             </td>
                 </tr>
-
+           </c:forEach>  
                
               </tbody>
             </table>
@@ -433,8 +371,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	     </div>
         </div>
        </div>
-     </div>  <!-- Container -->
+     </div>
 
+
+     
 
 </body>
 

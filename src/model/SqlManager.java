@@ -181,7 +181,7 @@ public class SqlManager {
                 user.setUserId(res.getInt("id"));
                 user.setFirstName(res.getString("firstname"));
                 user.setLastName(res.getString("lastname"));
-                user.setEmail(res.getString("lastname"));
+                user.setEmail(res.getString("email"));
                 user.setPassWord(res.getString("password"));
                 
 	            userlist.add(user);
