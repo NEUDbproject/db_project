@@ -5,6 +5,8 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 
 
@@ -163,5 +165,45 @@ public class SqlManager {
 		}
 		
 	}
+	 
+	 public List<User> readAllUsers(){
+		 List<User> userlist = new ArrayList<User>();
+		 Connection conn=ConnectSql();
+		 Statement st;
+		 
+		 
+		 try{
+			 String sql = "Select * from User";
+			 st = (Statement) conn.createStatement();  
+	         ResultSet res = st.executeQuery(sql);   
+	         while (res.next()) { 
+	        	User user =new User();
+                user.setUserId(res.getInt("id"));
+                user.setFirstName(res.getString("firstname"));
+                user.setLastName(res.getString("lastname"));
+                user.setEmail(res.getString("lastname"));
+                user.setPassWord(res.getString("password"));
+                
+	            userlist.add(user);
+	                
+	            }  
+		 }
+		 
+		 /*Below is closing the database*/
+		 catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			// close SQL connection
+			finally {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		 return userlist;
+}
 }
 
