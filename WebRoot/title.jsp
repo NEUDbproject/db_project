@@ -105,13 +105,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						 <button class="btn"><%=userEmail %></button> <button data-toggle="dropdown" class="btn dropdown-toggle"><span class="caret"></span></button>
 						<ul class="dropdown-menu">
 							<li>
-								<a href="#">操作</a>
+								<a href="#">Operation</a>
 							</li>
 							<li>
-								<a href="#">设置栏目</a>
+								<a href="#">Setting</a>
 							</li>
 							<li>
-								<a href="#">更多设置</a>
+								<a href="#">More</a>
 							</li>
 							<li class="divider">
 							</li>
