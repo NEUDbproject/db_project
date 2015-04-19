@@ -60,9 +60,9 @@ public class UserManager extends HttpServlet {
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		    SqlManager sql=new SqlManager();
-		    List<User> list = (ArrayList<User>) sql.readAllUsers();
-		    request.setAttribute("ListUser", list);
-		    request.getRequestDispatcher("usermanage.jsp").forward(request, response);
+		    List<User> userlist = (ArrayList<User>) sql.readAllUsers();
+		    request.setAttribute("ListUser", userlist);
+		    request.getRequestDispatcher("manager.jsp").forward(request, response);
 		
 		
 	}
