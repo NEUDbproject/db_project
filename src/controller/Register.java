@@ -68,6 +68,7 @@ public class Register extends HttpServlet {
 	     newUser.setLastName(lastname);
 	     newUser.setPassWord(MDpwd); 
 	     newUser.setEmail(email);
+	     newUser.setType("User");
 	     
 	    
 	     SqlManager sql=new SqlManager();

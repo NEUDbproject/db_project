@@ -61,10 +61,10 @@ public class UserManager extends HttpServlet {
 			throws ServletException, IOException {
 		    SqlManager sql=new SqlManager();
 		    List<User> userlist = (ArrayList<User>) sql.readAllUsers();
-		    request.setAttribute("ListUser", userlist);
-		    request.getRequestDispatcher("manager.jsp").forward(request, response);
-		
-		
+		    HttpSession session = request.getSession(true);
+		    session.setAttribute("ListUser", userlist);
+		    System.out.println("Userlist Size: "+userlist.size());
+		    response.sendRedirect("manager.jsp");
 	}
 
 	/**

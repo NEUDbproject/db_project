@@ -9,7 +9,7 @@ public class User {
 	private String PassWord;
 	private String Email;
 	//private Date Birth;
-	//private String Type;
+	private String Type;
 	
 	
 	public Integer getUserId() {
@@ -42,16 +42,23 @@ public class User {
 	public void setEmail(String email) {
 		Email = email;
 	}
+	public String getType() {
+		return Type;
+	}
+	public void setType(String type) {
+		Type = type;
+	}
 	
 	
 	public User(Integer userId, String firstName, String lastName,
-			String password, String email) {
+			String password, String email,String type) {
 		super();
 		UserId = userId;
 		FirstName = firstName;
 		LastName = lastName;
 		PassWord = password;
 		Email = email;
+		Type = type;
 	}
 	
 	
