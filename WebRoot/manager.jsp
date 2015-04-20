@@ -83,7 +83,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
               <div class="table">
             <table class="table table-striped">
             
-          <%  List<User> userList=(List<User>)request.getSession().getAttribute("ListUser");%>
+          <%  List<User> userList=(List<User>)request.getSession().getAttribute("userlist");%>
               <thead>
                 <tr>
                   <th>User Id#</th>
@@ -136,7 +136,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 
                   <form class="btn btn-primary btn-xs" method="get" action="EditUser">
 		    		
-		    			<button class="btn btn-primary btn-xs" type="submit" name="deleteid" value="<%=newUser.getUserId()%>" >edit</button>
+		    			<button class="btn btn-primary btn-xs" type="submit" name="userid" value="<%=newUser.getUserId()%>" >edit</button>
 		    		
 		 			</form>  
 			</div>

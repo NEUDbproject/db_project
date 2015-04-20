@@ -12,12 +12,12 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.*;
 
-public class DeleteUser extends HttpServlet {
+public class UpdateUser extends HttpServlet {
 
 	/**
 	 * Constructor of the object.
 	 */
-	public DeleteUser() {
+	public UpdateUser() {
 		super();
 	}
 
@@ -41,25 +41,7 @@ public class DeleteUser extends HttpServlet {
 	 */
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		 String deleteID =request.getParameter("deleteid");
-		 //System.out.println(deleteID); 
-		 SqlManager sql=new SqlManager();
-		 boolean res=sql.deleteUser(deleteID);
-		 if(res==true)
-		 {
-			 HttpSession session = request.getSession(true);
-	    	 session.setAttribute("respondName", "success");
-    		 List<User> userlist=new ArrayList<User>();
-    		 userlist=sql.readAllUsers();
-    		 //System.out.println("!!");
-    		 //System.out.println(goodlist.size());
-    		 session.setAttribute("userlist", userlist);
-	    	 response.sendRedirect("manager.jsp");
-		     return; 
-		 }
-		 else{
-
-		 }
+		doPost(request, response);
 	}
 
 	/**
@@ -74,7 +56,42 @@ public class DeleteUser extends HttpServlet {
 	 */
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		 doGet(request, response);
+		String FirstName = new String(request.getParameter("FirstName").getBytes("ISO8859-1"),"UTF-8");
+	    String LastName = new String(request.getParameter("LastName").getBytes("ISO8859-1"),"UTF-8");
+	    //String Type = request.getParameter("");
+	    //String Password = request.getParameter("");
+	    //String Email=new String(request.getParameter("Email").getBytes("ISO8859-1"),"UTF-8");
+	   
+	    int UserId=Integer.parseInt(request.getParameter("userid"));
+	    
+	    User newUser=new User();
+	    newUser.setUserId(UserId);
+	    newUser.setFirstName(FirstName);
+	    newUser.setLastName(LastName);
+//	    newUser.setEmail(Email);
+	   
+	    
+	    SqlManager sql=new SqlManager();
+	    boolean res=sql.updateUser(newUser);
+	    if(res==true)
+	     {
+	    	 HttpSession session = request.getSession(true);
+	    	 session.setAttribute("respondName", "success");
+	    	 SqlManager gsql=new SqlManager();
+    		 List<User> userlist=new ArrayList<User>();
+    		 userlist=gsql.readAllUsers();
+    		 //System.out.println("!!");
+    		 //System.out.println(goodlist.size());
+    		 session.setAttribute("userlist", userlist);
+	    	 response.sendRedirect("manager.jsp");
+		     return;
+	     }
+	     else if(res==false){
+	    	 HttpSession session = request.getSession(true);
+	    	
+	    	 response.sendRedirect("manager.jsp");
+		     return;
+	     }
 	}
 
 	/**

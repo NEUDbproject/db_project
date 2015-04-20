@@ -44,6 +44,12 @@
     <description>EditUser in useredit.jsp</description>
     <servlet-class>controller.EditUser</servlet-class>
   </servlet>
+ <servlet>
+    <servlet-name>UpdateUser</servlet-name>
+    <display-name>UpdateUser</display-name>
+    <description>UpdateUser in useredit.jsp</description>
+    <servlet-class>controller.UpdateUser</servlet-class>
+  </servlet>
 
 
 
@@ -75,7 +81,10 @@
     <servlet-name>EditUser</servlet-name>
     <url-pattern>/EditUser</url-pattern>
   </servlet-mapping>
-  
+  <servlet-mapping>
+    <servlet-name>UpdateUser</servlet-name>
+    <url-pattern>/UpdateUser</url-pattern>
+  </servlet-mapping>
   
   
 	<welcome-file-list>
