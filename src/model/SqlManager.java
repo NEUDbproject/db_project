@@ -178,15 +178,25 @@ public class SqlManager {
 			 
 	         ResultSet res = st.executeQuery(sql);   
 	         while (res.next()) { 
+	        	
+	        	
+	        	int id = res.getInt("UserId");
+	        	String firstname=res.getString("FirstName");
+	        	String lastname=res.getString("LastName");
+	        	String email=res.getString("Email");
+	        	String password=res.getString("PassWord");
+	        	
 	        	User user =new User();
-                user.setUserId(res.getInt("id"));
-                user.setFirstName(res.getString("firstname"));
-                user.setLastName(res.getString("lastname"));
-                user.setEmail(res.getString("email"));
-                user.setPassWord(res.getString("password"));
+                user.setUserId(id);
+                user.setFirstName(firstname);
+                user.setLastName(lastname);
+                user.setEmail(email);
+                user.setPassWord(password);
+                
                 
 	            userlist.add(user);
-	                
+	            System.out.println(id);     
+	            System.out.println("test"); 
 	            }  
 		 }
 		 
@@ -233,6 +243,54 @@ public class SqlManager {
 		  
 	   }
 	   
+	   public boolean updateUser(User user)
+		{
+			Connection conn=ConnectSql();
+			Statement st; 
+			try{
+				
+			//	String sql = "update goods set goods_Title='"+editGood.getgoodsName()+"', goods_Des='"+editGood.getgoodsDes()+"',goods_Pic='"+editGood.getgoodsPic()+"',goods_Status='"+editGood.getgoodsStatus()+"',goods_Type='"+editGood.getgoodsType()+"' where goods_Id='"+editGood.getID()+"'";
+				
+		        st = (Statement) conn.createStatement();
+		    //    st.executeUpdate(sql);
+		        conn.close();
+		        return true;
+	        }
+			catch(SQLException e)
+			{
+				System.out.println(e);
+				return false;
+			}
+			
+		}
+	   
+		public User getUserById(int userid)
+		{
+			
+			User user=new User();
+			Connection conn=ConnectSql();
+			Statement st; 
+			String sql="";
+			try {  
+				sql = "select * from User where UserId='"+userid+"'";
+	            st = (Statement) conn.createStatement();  
+	            ResultSet rs = st.executeQuery(sql); 
+	            while(rs.next())
+	            {
+	            	// 根据字段名获取相应的值  
+	            
+		 
+		           
+	            }
+	            conn.close();   //关闭数据库连接  
+	    		return user;
+	    		
+	              
+	        } catch (SQLException e) {  
+	        	System.out.println(e);
+	            return null;
+	        }  
+		} 
 	   
 }
 
