@@ -185,6 +185,7 @@ public class SqlManager {
 	        	String lastname=res.getString("LastName");
 	        	String email=res.getString("Email");
 	        	String password=res.getString("PassWord");
+	        	String type=res.getString("Type");
 	        	
 	        	User user =new User();
                 user.setUserId(id);
@@ -192,6 +193,7 @@ public class SqlManager {
                 user.setLastName(lastname);
                 user.setEmail(email);
                 user.setPassWord(password);
+                user.setType(type);
                 
                 
 	            userlist.add(user);
@@ -277,12 +279,12 @@ public class SqlManager {
 	            ResultSet rs = st.executeQuery(sql); 
 	            while(rs.next())
 	            {
-	            	// ¸ù¾Ý×Ö¶ÎÃû»ñÈ¡ÏàÓ¦µÄÖµ  
+	            	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½  
 	            
 		 
 		           
 	            }
-	            conn.close();   //¹Ø±ÕÊý¾Ý¿âÁ¬½Ó  
+	            conn.close();   //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½  
 	    		return user;
 	    		
 	              
