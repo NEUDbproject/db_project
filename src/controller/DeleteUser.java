@@ -10,17 +10,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import model.*;
 
-import library.MD5;
-import model.SqlManager;
-import model.User;
-
-public class UserManager extends HttpServlet {
+public class DeleteUser extends HttpServlet {
 
 	/**
 	 * Constructor of the object.
 	 */
-	public UserManager() {
+	public DeleteUser() {
 		super();
 	}
 
@@ -44,7 +41,25 @@ public class UserManager extends HttpServlet {
 	 */
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		doPost(request, response);
+		 String deleteID =request.getParameter("deleteid");
+		 //System.out.println(deleteID); 
+		 SqlManager sql=new SqlManager();
+		 boolean res=sql.deleteUser(deleteID);
+		 if(res==true)
+		 {
+			 HttpSession session = request.getSession(true);
+	    	 session.setAttribute("respondName", "商品删除成功");
+    		 List<User> userlist=new ArrayList<User>();
+    		 userlist=sql.readAllUsers();
+    		 //System.out.println("!!");
+    		 //System.out.println(goodlist.size());
+    		 session.setAttribute("userlist", userlist);
+	    	 response.sendRedirect("manager.jsp");
+		     return; 
+		 }
+		 else{
+
+		 }
 	}
 
 	/**
@@ -59,12 +74,7 @@ public class UserManager extends HttpServlet {
 	 */
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		    SqlManager sql=new SqlManager();
-		    List<User> userlist = (ArrayList<User>) sql.readAllUsers();
-		    HttpSession session = request.getSession(true);
-		    session.setAttribute("ListUser", userlist);
-		//    System.out.println("Userlist Size: "+userlist.size());
-		    response.sendRedirect("manager.jsp");
+		 doGet(request, response);
 	}
 
 	/**

@@ -11,16 +11,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import library.MD5;
-import model.SqlManager;
 import model.User;
+import model.SqlManager;
 
-public class UserManager extends HttpServlet {
+public class EditUser extends HttpServlet {
 
 	/**
 	 * Constructor of the object.
 	 */
-	public UserManager() {
+	public EditUser() {
 		super();
 	}
 
@@ -44,8 +43,27 @@ public class UserManager extends HttpServlet {
 	 */
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		doPost(request, response);
-	}
+		 String userid =request.getParameter("userid");  //maybe have some problems
+		
+		 SqlManager sql=new SqlManager();
+		 User editUser=new User();
+		 editUser=sql.getUserById(userid);
+	
+		 if(editUser!=null)
+		 {
+			 HttpSession session = request.getSession(true);
+			
+	   		 session.setAttribute("editUser", editUser);
+	    	 response.sendRedirect("useredit.jsp");
+		     return; 
+		 }
+		 else{
+             System.out.println("Faiure"); 
+	    	 response.sendRedirect("manager.jsp");
+		     return; 
+		 }
+		
+	} 
 
 	/**
 	 * The doPost method of the servlet. <br>
@@ -59,12 +77,7 @@ public class UserManager extends HttpServlet {
 	 */
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		    SqlManager sql=new SqlManager();
-		    List<User> userlist = (ArrayList<User>) sql.readAllUsers();
-		    HttpSession session = request.getSession(true);
-		    session.setAttribute("ListUser", userlist);
-		//    System.out.println("Userlist Size: "+userlist.size());
-		    response.sendRedirect("manager.jsp");
+		doGet(request, response);
 	}
 
 	/**

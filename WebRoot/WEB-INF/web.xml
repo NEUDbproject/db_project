@@ -32,7 +32,18 @@
     <description>ListAllUsers in management page</description>
     <servlet-class>controller.UserManager</servlet-class>
   </servlet>
-
+  <servlet>
+    <servlet-name>DeleteUser</servlet-name>
+    <display-name>DeleteUser</display-name>
+    <description>DeleteUser in management page</description>
+    <servlet-class>controller.DeleteUser</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>EditUser</servlet-name>
+    <display-name>EditUser</display-name>
+    <description>EditUser in useredit.jsp</description>
+    <servlet-class>controller.EditUser</servlet-class>
+  </servlet>
 
 
 
@@ -55,6 +66,14 @@
   <servlet-mapping>
     <servlet-name>ListUser</servlet-name>
     <url-pattern>/ListUser</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>DeleteUser</servlet-name>
+    <url-pattern>/DeleteUser</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>EditUser</servlet-name>
+    <url-pattern>/EditUser</url-pattern>
   </servlet-mapping>
   
   

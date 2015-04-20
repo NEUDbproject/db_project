@@ -226,7 +226,7 @@ public class SqlManager {
 		   
 		   try{
 				
-				String sql = "delete from goods where goods_Id='"+id+"'";
+				String sql = "delete from User where UserId='"+id+"'";
 				
 		        st = (Statement) conn.createStatement();
 		        st.executeUpdate(sql);
@@ -251,10 +251,10 @@ public class SqlManager {
 			Statement st; 
 			try{
 				
-			//	String sql = "update goods set goods_Title='"+editGood.getgoodsName()+"', goods_Des='"+editGood.getgoodsDes()+"',goods_Pic='"+editGood.getgoodsPic()+"',goods_Status='"+editGood.getgoodsStatus()+"',goods_Type='"+editGood.getgoodsType()+"' where goods_Id='"+editGood.getID()+"'";
+				String sql = "update User set UserId='"+user.getUserId()+"', FirstName='"+user.getFirstName()+"',LastName='"+user.getLastName()+"'";
 				
 		        st = (Statement) conn.createStatement();
-		    //    st.executeUpdate(sql);
+		        st.executeUpdate(sql);
 		        conn.close();
 		        return true;
 	        }
@@ -266,9 +266,9 @@ public class SqlManager {
 			
 		}
 	   
-		public User getUserById(int userid)
+		public User getUserById(String id)
 		{
-			
+			int userid = Integer.parseInt(id);
 			User user=new User();
 			Connection conn=ConnectSql();
 			Statement st; 
@@ -276,15 +276,28 @@ public class SqlManager {
 			try {  
 				sql = "select * from User where UserId='"+userid+"'";
 	            st = (Statement) conn.createStatement();  
-	            ResultSet rs = st.executeQuery(sql); 
-	            while(rs.next())
+	            ResultSet res = st.executeQuery(sql); 
+	            while(res.next())
 	            {
-	            	// ����������������������  
+		        	int uid = res.getInt("UserId");
+		        	String firstname=res.getString("FirstName");
+		        	String lastname=res.getString("LastName");
+		        	String email=res.getString("Email");
+		        	String password=res.getString("PassWord");
+		        	String type=res.getString("Type");
+		        	
+		        	
+	                user.setUserId(uid);
+	                user.setFirstName(firstname);
+	                user.setLastName(lastname);
+	                user.setEmail(email);
+	                user.setPassWord(password);
+	                user.setType(type);
 	            
 		 
 		           
 	            }
-	            conn.close();   //��������������  
+	            conn.close();  
 	    		return user;
 	    		
 	              
@@ -292,7 +305,10 @@ public class SqlManager {
 	        	System.out.println(e);
 	            return null;
 	        }  
-		} 
+		}
+
+
+
 	   
 }
 
