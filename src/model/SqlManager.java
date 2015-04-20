@@ -206,5 +206,33 @@ public class SqlManager {
 			}
 		 return userlist;
 }
+	 
+	   public boolean deleteUser(String userid){
+		   int id=Integer.parseInt(userid);
+		   Connection conn=ConnectSql();
+		    Statement st;
+		   
+		   try{
+				
+				String sql = "delete from goods where goods_Id='"+id+"'";
+				
+		        st = (Statement) conn.createStatement();
+		        st.executeUpdate(sql);
+		        conn.close();
+		        return true;
+		       
+		   }
+		   
+		   catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return false;
+			}
+		   
+		
+		  
+	   }
+	   
+	   
 }
 
