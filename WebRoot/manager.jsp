@@ -1,5 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ page import="model.User" %>
+<%@ page import="controller.*" %>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -82,7 +83,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <div role="tabpanel" class="tab-pane active" id="home">
               <div class="table">
             <table class="table table-striped">
-            
+          <% UserManager usermanager = new UserManager();  
+              usermanager.doGet(request, response);          
+          %>
           <%  List<User> userList=(List<User>)request.getSession().getAttribute("userlist");%>
               <thead>
                 <tr>

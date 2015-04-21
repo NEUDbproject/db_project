@@ -64,7 +64,7 @@ public class UserManager extends HttpServlet {
 		    HttpSession session = request.getSession(true);
 		    session.setAttribute("userlist", userlist);
 		//    System.out.println("Userlist Size: "+userlist.size());
-		    response.sendRedirect("manager.jsp");
+		//    response.sendRedirect("manager.jsp");
 	}
 
 	/**
