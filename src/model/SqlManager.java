@@ -251,7 +251,7 @@ public class SqlManager {
 			Statement st; 
 			try{
 				
-				String sql = "update User set UserId='"+user.getUserId()+"', FirstName='"+user.getFirstName()+"',LastName='"+user.getLastName()+"'";
+				String sql = "update User set FirstName='"+user.getFirstName()+"',LastName='"+user.getLastName()+ "'where UserId='"+user.getUserId()+"'";
 				
 		        st = (Statement) conn.createStatement();
 		        st.executeUpdate(sql);

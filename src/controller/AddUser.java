@@ -1,6 +1,8 @@
 package controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -80,7 +82,13 @@ public class AddUser extends HttpServlet {
 	    	 System.out.println(res);
 	    	 session.setAttribute("Type", "User");
 	    	 session.setAttribute("title", "Online Course Evaluation");
-	    	 response.sendRedirect("manager.jsp");
+	    	 
+	    	 List<User> newuserlist = (ArrayList<User>) sql.readAllUsers();
+			  HttpSession newsession = request.getSession(true);
+			    session.setAttribute("userlist", newuserlist);
+		
+			    response.sendRedirect("manager.jsp");
+	    	 
 		     return;
 	     }else if(res == -1){
 	    	 System.out.println("Create a User Failed!");

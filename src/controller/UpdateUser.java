@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
 import model.*;
 
 public class UpdateUser extends HttpServlet {
@@ -83,13 +84,21 @@ public class UpdateUser extends HttpServlet {
     		 //System.out.println("!!");
     		 //System.out.println(goodlist.size());
     		 session.setAttribute("userlist", userlist);
+    		 
+    		 List<User> newuserlist = (ArrayList<User>) sql.readAllUsers();
+ 			
+			 session.setAttribute("userlist", newuserlist);
+		
+			
 	    	 response.sendRedirect("manager.jsp");
+	    	 
 		     return;
 	     }
 	     else if(res==false){
 	    	 HttpSession session = request.getSession(true);
 	    	
-	    	 response.sendRedirect("manager.jsp");
+	    	 response.sendRedirect("useredit.jsp");
+	    	 System.out.println("failure");
 		     return;
 	     }
 	}

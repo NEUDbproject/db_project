@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
 import model.*;
 
 public class DeleteUser extends HttpServlet {
@@ -54,6 +55,12 @@ public class DeleteUser extends HttpServlet {
     		 //System.out.println("!!");
     		 //System.out.println(goodlist.size());
     		 session.setAttribute("userlist", userlist);
+    		 
+    		 List<User> newuserlist = (ArrayList<User>) sql.readAllUsers();
+			
+			    session.setAttribute("userlist", newuserlist);
+		
+			
 	    	 response.sendRedirect("manager.jsp");
 		     return; 
 		 }

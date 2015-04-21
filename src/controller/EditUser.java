@@ -58,7 +58,7 @@ public class EditUser extends HttpServlet {
 		     return; 
 		 }
 		 else{
-             System.out.println("Faiure"); 
+             System.out.println("Faiure!!!"); 
 	    	 response.sendRedirect("manager.jsp");
 		     return; 
 		 }
