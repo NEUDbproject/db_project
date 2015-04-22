@@ -81,7 +81,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           </ul>
         </li>
         
-      </ul>
+      </ul> <!-- 左边的部分 -->
  
       <ul class="nav navbar-nav navbar-right ">
            <form class="navbar-form navbar-left" role="search">
@@ -108,11 +108,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	  	//	user = sql.getUserById(userId);
 	  %>
 		<div class="btn-group">
-						 <button class="btn btn-primary btn-xs"><%=userEmail %></button> <button data-toggle="dropdown" class="btn dropdown-toggle"><span class="caret"></span></button>
+						 <button class="btn btn-primary btn-xs"><%=userEmail %></button> 
+						 <button data-toggle="dropdown" class="btn dropdown-toggle"><span class="caret"></span></button>
 						<form class="btn btn-primary btn-xs" method="get" action="UserProfile">
 						
 		    		
-			<button class="btn btn-primary btn-xs" type="submit" name="userid" value="" ><%=userId %></button>
+			<button class="btn btn-primary btn-xs" type="submit" name="userid" value="<%=userId %>" ><%=userId %></button>
 		    		
 		 			</form>  
 						<ul class="dropdown-menu">
@@ -130,10 +131,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						</ul>
 					</div>
 	  <li><a href="logoff.jsp">Log Off</a></li>	
-		</ul>	
+		
 	<%
 	  }
      %>
+     </ul>	 <!-- 右边的部分 -->
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
