@@ -68,6 +68,13 @@
     <description>Delete Course through manage page </description>
     <servlet-class>controller.DeleteCourse</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>SearchCourse</servlet-name>
+    <display-name>SearchCourse</display-name>
+    <description>Search Course by keyword</description>
+    <servlet-class>controller.SearchCourse</servlet-class>
+  </servlet>
+
 
 
   <servlet-mapping>
@@ -113,6 +120,10 @@
 <servlet-mapping>
     <servlet-name>DeleteCourse</servlet-name>
     <url-pattern>/DeleteCourse</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>SearchCourse</servlet-name>
+    <url-pattern>/SearchCourse</url-pattern>
   </servlet-mapping> 
   
 	<welcome-file-list>

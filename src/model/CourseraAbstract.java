@@ -7,6 +7,13 @@ public class CourseraAbstract {
 	String id;
 	String shortName;
 	String name;
+	String photo;
+	public String getPhoto() {
+		return photo;
+	}
+	public void setPhoto(String photo) {
+		this.photo = photo;
+	}
 	public String getId() {
 		return id;
 	}
@@ -25,11 +32,12 @@ public class CourseraAbstract {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public CourseraAbstract(String id, String shortName, String name) {
+	public CourseraAbstract(String id, String shortName, String name, String photo) {
 		super();
 		this.id = id;
 		this.shortName = shortName;
 		this.name = name;
+		this.photo = photo;
 	}
 	
 	public CourseraAbstract() {

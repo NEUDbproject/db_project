@@ -81,11 +81,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       </ul> <!-- 左边的部分 -->
  
       <ul class="nav navbar-nav navbar-right ">
-           <form class="navbar-form navbar-left" role="search">
+           <form class="navbar-form navbar-left" role="search" action="SearchCourse" method="POST">
         <div class="form-group">
-          <input type="text" class="form-control" placeholder="Search">
+          <input type="text" class="form-control" placeholder="Search" name="querykwd">
         </div>
-        <button class="btn btn-xs btn-primary" type="button">Submit</button>
+        <button class="btn btn-xs btn-primary" type="submit">Submit</button>
       </form>
       <%
       	if(session.getAttribute("userId")==null){
