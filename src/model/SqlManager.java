@@ -68,6 +68,7 @@ public class SqlManager {
 		Statement st; 
 		String sql="";
 		int resId = 0;
+		String type ="";
 		try {  
 			sql = "select UserId from User where Email='"+email+"'";
             st = (Statement) conn.createStatement();  
@@ -76,7 +77,7 @@ public class SqlManager {
             {
     
             	resId = rs.getInt("UserId");
-	           
+	            
             }
             conn.close();   
     		return resId;
@@ -85,6 +86,33 @@ public class SqlManager {
         } catch (SQLException e) {  
         	System.out.println(e);
             return -1;
+        }
+	}
+	
+	public String findTypeByEmail(String email)
+	{
+		Connection conn=ConnectSql();
+		Statement st; 
+		String sql="";
+		String type="";
+		
+		try {  
+			sql = "select Type from User where Email='"+email+"'";
+            st = (Statement) conn.createStatement();  
+            ResultSet rs = st.executeQuery(sql); 
+            while(rs.next())
+            {
+    
+            	type = rs.getString("Type");
+	            
+            }
+            conn.close();   
+    		return type;
+    		
+              
+        } catch (SQLException e) {  
+        	System.out.println(e);
+            return null;
         }
 	}
 	

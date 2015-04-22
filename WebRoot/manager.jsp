@@ -41,12 +41,51 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script src="./Blog Template for Bootstrap_files/ie-emulation-modes-warning.js"></script>
 
     <!-- Above is Bootstrap related data  -->
+    
+      <script language="JavaScript1.2" type="text/javascript">
+		function delayURL(url) {
+			var delay = document.getElementById("time").innerHTML;
+			if(delay > 0) {
+			   delay--;
+			   document.getElementById("time").innerHTML = delay;
+			} else {
+			   window.location.href = url;
+			    }
+			    setTimeout("delayURL('" + url + "')", 1000);
+		}
+	</script>
+    
   </head>
   
+  
      
+  	<%
+  		
+  		if(session.getAttribute("userId")==null)
+  		{
+  			%><body style="text-align:center;">&nbsp; 
+	  			 您尚未登录。页面<span id="time">5</span>秒后，自动返回登录界面。  <br>
+		  	  <script type="text/javascript">  
+				delayURL("login.jsp"); 
+			  </script>
+			<%
+  		}
+  		else{
+  			String type = request.getSession().getAttribute("type").toString();
+
+
+	  		if(type.equals("User"))
+	  		{
+	  			%>
+                       <h3> hahahaahaa </h3>
+	  			<%
+	  		}
+	  		else if(type.equals("Admin")){
+		  	 %>
   
   
 <body>
+
 
 
  <!-- 以下为用户，课程管理功能 -->
@@ -218,7 +257,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
               </thead>
               <tbody>
                <%
-    		for(int i=0;i<10;i++){
+    		for(int i=0;i<courseList.size();i++){
     		
     			Course newCourse = new Course();
     			newCourse = courseList.get(i);
@@ -469,7 +508,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </div>
        </div>
      </div>
-     
-     
+   
 </body>
+<%  } 
+	  		}%>
 </html>

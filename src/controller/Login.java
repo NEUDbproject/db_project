@@ -61,17 +61,33 @@ public class Login extends HttpServlet {
 	     String email = request.getParameter("email");
 	     String pwd = request.getParameter("lpwd").trim();
 	     String MDpwd=md5er.getMD5Str(pwd);
+	     
 	     System.out.println("Email: "+email+"  MDpwd: "+MDpwd);
 	     
 	     SqlManager sql=new SqlManager();
 	     if(sql.LoginSql(email, MDpwd)==true){
 	    	 System.out.println("Login Succ!");
 	    	 int userId = sql.findUserIdByEmail(email);
+	    	 String type =sql.findTypeByEmail(email);
 	    	 HttpSession session = request.getSession(true);
-	    	 session.setAttribute("userId", userId);
-	    	 session.setAttribute("userEmail", email);
+	    	 
+            /*IF login user is a User. He will move to the main page. If login user is a administrator. He will move to the manager.jsp*/
+	    	 if(type.equals("User"))
+	    	 {
+		     session.setAttribute("userId", userId);
+		     session.setAttribute("userEmail", email);
+		     session.setAttribute("type", email);
 	    	 session.setAttribute("title", "OCE|DBproject");
-    		 response.sendRedirect("index.jsp");
+    		 response.sendRedirect("manager.jsp");
+	    	 }
+	    	 else
+	    	 {
+		    	 session.setAttribute("userId", userId);
+		    	 session.setAttribute("userEmail", email);
+		    	 session.setAttribute("type", type);
+		    	 response.sendRedirect("manager.jsp");
+	    	 }
+    		
     		 return;
 	     }
 	     else{
