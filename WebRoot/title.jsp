@@ -43,9 +43,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <body>
 <nav class="navbar navbar-default">
  <div class="container">
-  <div class="center-block">
-    </div> 
- 
 
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
@@ -88,7 +85,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <div class="form-group">
           <input type="text" class="form-control" placeholder="Search">
         </div>
-         <button class="btn btn-large btn-primary" type="button">Submit</button>
+        <button class="btn btn-xs btn-primary" type="button">Submit</button>
       </form>
       <%
       	if(session.getAttribute("userId")==null){
@@ -107,15 +104,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	  	//	SqlManager sql = new SqlManager();
 	  	//	user = sql.getUserById(userId);
 	  %>
-		<div class="btn-group">
-						 <button class="btn btn-primary btn-xs"><%=userEmail %></button> 
-						 <button data-toggle="dropdown" class="btn dropdown-toggle"><span class="caret"></span></button>
-						<form class="btn btn-primary btn-xs" method="get" action="UserProfile">
-						
-		    		
+		
+			<li><form class="btn btn-primary btn-xs" method="get" action="">
+			<button class="btn btn-primary btn-xs btn-block"><%=userEmail %></button>
+			</form></li>
+		    <li><button data-toggle="dropdown" class="btn dropdown-toggle"><span class="caret"></span></button></li>
+		   
+			<li><form class="btn btn-primary btn-xs" method="get" action="UserProfile">							
 			<button class="btn btn-primary btn-xs" type="submit" name="userid" value="<%=userId %>" ><%=userId %></button>
-		    		
-		 			</form>  
+		      	</form> </li>	
+		 <li>
 						<ul class="dropdown-menu">
 							<li>
 								<a href="#">Operation</a>
@@ -128,9 +126,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							</li>
 							<li class="divider">
 							</li>
-						</ul>
-					</div>
-	  <li><a href="logoff.jsp">Log Off</a></li>	
+		</ul>
+		</li>
+	  <li><a href="logoff.jsp"><h5>Log Off</h5></a></li>
 		
 	<%
 	  }
