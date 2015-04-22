@@ -56,6 +56,12 @@
     <description>Show UserInformation in UserProfile.jsp</description>
     <servlet-class>controller.UserProfile</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>CourseRefresh</servlet-name>
+    <display-name>CourseRefresh</display-name>
+    <description>Refresh Course ID from Provider Coursera </description>
+    <servlet-class>controller.CourseRefresh</servlet-class>
+  </servlet>
 
 
 
@@ -94,6 +100,10 @@
   <servlet-mapping>
     <servlet-name>UserProfile</servlet-name>
     <url-pattern>/UserProfile</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>CourseRefresh</servlet-name>
+    <url-pattern>/CourseRefresh</url-pattern>
   </servlet-mapping>
   
 	<welcome-file-list>
