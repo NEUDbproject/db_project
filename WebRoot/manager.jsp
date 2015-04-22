@@ -250,6 +250,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     </li>
   </ul>
 </nav>
+<div class="span12">
+<form action="CourseRefresh" method="POST">
+	<button class="btn btn-info" type="submit">Refresh Course Database</button>
+</form>
+</div>
     </div>
     <!-- 下面是Comment的内容 -->
     
