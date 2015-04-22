@@ -219,6 +219,9 @@ public class SqlManager {
 		 return userlist;
 }
 	 
+	 
+	 
+	 
 	   public boolean deleteUser(String userid){
 		   int id=Integer.parseInt(userid);
 		   Connection conn=ConnectSql();
@@ -265,6 +268,8 @@ public class SqlManager {
 			}
 			
 		}
+	   
+	   
 	   
 		public User getUserById(String id)
 		{

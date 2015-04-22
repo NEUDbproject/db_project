@@ -1,4 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ page import="model.*" %>
+<%@ page import="controller.*" %>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -93,16 +95,26 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       %>
       	<li><a href="register.jsp">Register</a></li>
         <li><a href="login.jsp">Sign in</a></li>
-        </ul>
+        
       <%
       	}else{
+      		
 	      	String userEmail = request.getSession().getAttribute("userEmail").toString();
 		  	String userId = request.getSession().getAttribute("userId").toString();
 		  	System.out.println(userEmail);
 	  		System.out.println(userId);
+	  	//	User user =new User();
+	  	//	SqlManager sql = new SqlManager();
+	  	//	user = sql.getUserById(userId);
 	  %>
 		<div class="btn-group">
-						 <button class="btn"><%=userEmail %></button> <button data-toggle="dropdown" class="btn dropdown-toggle"><span class="caret"></span></button>
+						 <button class="btn btn-primary btn-xs"><%=userEmail %></button> <button data-toggle="dropdown" class="btn dropdown-toggle"><span class="caret"></span></button>
+						<form class="btn btn-primary btn-xs" method="get" action="UserProfile">
+						
+		    		
+			<button class="btn btn-primary btn-xs" type="submit" name="userid" value="" ><%=userId %></button>
+		    		
+		 			</form>  
 						<ul class="dropdown-menu">
 							<li>
 								<a href="#">Operation</a>
@@ -117,7 +129,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							</li>
 						</ul>
 					</div>
-		<a href="logoff.jsp">Log Off</a>		
+	  <li><a href="logoff.jsp">Log Off</a></li>	
+		</ul>	
 	<%
 	  }
      %>

@@ -50,6 +50,12 @@
     <description>UpdateUser in useredit.jsp</description>
     <servlet-class>controller.UpdateUser</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>UserProfile</servlet-name>
+    <display-name>UserProfile</display-name>
+    <description>Show UserInformation in UserProfile.jsp</description>
+    <servlet-class>controller.UserProfile</servlet-class>
+  </servlet>
 
 
 
@@ -85,7 +91,10 @@
     <servlet-name>UpdateUser</servlet-name>
     <url-pattern>/UpdateUser</url-pattern>
   </servlet-mapping>
-  
+  <servlet-mapping>
+    <servlet-name>UserProfile</servlet-name>
+    <url-pattern>/UserProfile</url-pattern>
+  </servlet-mapping>
   
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
