@@ -78,7 +78,7 @@ public class Login extends HttpServlet {
 		     session.setAttribute("userEmail", email);
 		     session.setAttribute("type", email);
 	    	 session.setAttribute("title", "OCE|DBproject");
-    		 response.sendRedirect("manager.jsp");
+    		 response.sendRedirect("title.jsp");
 	    	 }
 	    	 else
 	    	 {

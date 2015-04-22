@@ -74,13 +74,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   			String type = request.getSession().getAttribute("type").toString();
 
 
-	  		if(type.equals("User"))
-	  		{
-	  			%>
-                       <h3> hahahaahaa </h3>
-	  			<%
-	  		}
-	  		else if(type.equals("Admin")){
+	  		 if(type.equals("Admin")){
 		  	 %>
   
   
@@ -511,5 +505,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    
 </body>
 <%  } 
+	  		   else
+		  		{
+		  			%>
+	            <body style="text-align:center;">
+	  			 普通用户无权进入管理员界面。页面<span id="time">5</span>秒后，自动返回个人界面。  <br>
+		  	  <script type="text/javascript">  
+				delayURL("title.jsp"); 
+			  </script>
+		  			<%
+		  		}
 	  		}%>
 </html>
