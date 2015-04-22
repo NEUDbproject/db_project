@@ -12,15 +12,15 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 
-import model.SqlManager;
-import model.User;
+import model.*;
 
-public class UserManager extends HttpServlet {
+
+public class CourseManager extends HttpServlet {
 
 	/**
 	 * Constructor of the object.
 	 */
-	public UserManager() {
+	public CourseManager() {
 		super();
 	}
 
@@ -59,10 +59,10 @@ public class UserManager extends HttpServlet {
 	 */
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		    SqlManager sql=new SqlManager();
-		    List<User> userlist = (ArrayList<User>) sql.readAllUsers();
+		    SqlCourse sql=new SqlCourse();
+		    List<Course> courselist = (ArrayList<Course>) sql.readAllCourses();
 		    HttpSession session = request.getSession(true);
-		    session.setAttribute("userlist", userlist);
+		    session.setAttribute("courselist", courselist);
 		//    System.out.println("Userlist Size: "+userlist.size());
 		//    response.sendRedirect("manager.jsp");
 	}

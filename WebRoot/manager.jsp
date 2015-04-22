@@ -1,5 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-<%@ page import="model.User" %>
+<%@ page import="model.*" %>
 <%@ page import="controller.*" %>
 <%
 String path = request.getContextPath();
@@ -202,6 +202,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <div role="tabpanel" class="tab-pane" id="course">
               <div class="table-responsive">
             <table class="table table-striped">
+            
+                       <% CourseManager coursemanager = new CourseManager();  
+              coursemanager.doGet(request, response);          
+          %>
+          <%  List<Course> courseList=(List<Course>)request.getSession().getAttribute("courselist");%>
+          
               <thead>
                 <tr>
                   <th>Course Id#</th>
@@ -211,22 +217,44 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>1,001</td>
-                  <td>Lorem</td>
-                  <td>ipsum</td>
+               <%
+    		for(int i=0;i<10;i++){
+    		
+    			Course newCourse = new Course();
+    			newCourse = courseList.get(i);
+    			%><tr><%
+    			 
+    			%><td><%=newCourse.getCourseId() 
+    			%></td><% 
+
+				%><td><%=newCourse.getCourseAPPId() 
+    			%></td><% 	
+    			
+    			%>
+                  <td><%=newCourse.getProvider() 
+    			%></td>
+                  
+                  <% 	
+    			
+    			%>
+                  
+                  
                   <td>
                   <div class="col-xs-offset-4">
          			<!-- Button trigger modal -->
-		 <button class="btn btn-primary btn-xs" type="submit">Add</button>
-         <button class="btn btn-primary btn-xs" type="submit">Delete</button>
-         <button class="btn btn-primary btn-xs" type="submit">Edit</button>
+                 <form class="btn btn-primary btn-xs" method="get" action="DeleteCourse">
+		    		
+		    			<button class="btn btn-primary btn-xs" type="submit" name="deleteid" value="<%=newCourse.getCourseId()%>" >delete</button>
+		    		
+		 			</form>  
 			</div>
             </td>
                 </tr>
 
 
- 
+ 		     <% 
+    			} %>
+    			
                
               </tbody>
             </table>
@@ -255,12 +283,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<button class="btn btn-info" type="submit">Refresh Course Database</button>
 </form>
 </div>
-    </div>
+    </div>  <!-- CourseManager End here -->
+    
+    
+    
     <!-- 下面是Comment的内容 -->
     
     <div role="tabpanel" class="tab-pane" id="profile">
             <div class="table-responsive">
             <table class="table table-striped">
+  
               <thead>
                 <tr>
                   <th>User Id</th>
@@ -271,11 +303,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>1,001</td>
-                  <td>Lorem</td>
-                  <td>ipsum</td>
-                  <td>dolor</td>
+  
                   <td>
                   <div class="col-xs-offset-4">
          			<!-- Button trigger modal -->
@@ -283,6 +311,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
          <button class="btn btn-primary btn-xs" type="submit">Delete</button>
          <button class="btn btn-primary btn-xs" type="submit">Edit</button>
 			</div>
+			
+			
+	
             </td>
                 </tr>
  
@@ -392,6 +423,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                   <td>Lorem</td>
                   <td>ipsum</td>
                   <td>Iranian</td>
+                  
+                  
                   <td>
                   <div class="col-xs-offset-4">
          			<!-- Button trigger modal -->

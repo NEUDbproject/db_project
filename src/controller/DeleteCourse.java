@@ -11,16 +11,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import model.*;
 
-import model.SqlManager;
-import model.User;
-
-public class UserManager extends HttpServlet {
+public class DeleteCourse extends HttpServlet {
 
 	/**
 	 * Constructor of the object.
 	 */
-	public UserManager() {
+	public DeleteCourse() {
 		super();
 	}
 
@@ -44,7 +42,31 @@ public class UserManager extends HttpServlet {
 	 */
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		doPost(request, response);
+		 String deleteID =request.getParameter("deleteid");
+		 //System.out.println(deleteID); 
+		 SqlCourse sql=new SqlCourse();
+		 boolean res=sql.deleteCourse(deleteID);
+		 if(res==true)
+		 {
+			 HttpSession session = request.getSession(true);
+	    	 session.setAttribute("respondName", "success");
+    		 List<Course> courselist=new ArrayList<Course>();
+    		 courselist=sql.readAllCourses();
+    		 //System.out.println("!!");
+    		 //System.out.println(goodlist.size());
+    		 session.setAttribute("courselist", courselist);
+    		 
+    		 List<Course> newcourselist = (ArrayList<Course>) sql.readAllCourses();
+			
+			 session.setAttribute("courselist", newcourselist);
+		
+			
+	    	 response.sendRedirect("manager.jsp");
+		     return; 
+		 }
+		 else{
+
+		 }
 	}
 
 	/**
@@ -59,12 +81,7 @@ public class UserManager extends HttpServlet {
 	 */
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		    SqlManager sql=new SqlManager();
-		    List<User> userlist = (ArrayList<User>) sql.readAllUsers();
-		    HttpSession session = request.getSession(true);
-		    session.setAttribute("userlist", userlist);
-		//    System.out.println("Userlist Size: "+userlist.size());
-		//    response.sendRedirect("manager.jsp");
+		 doGet(request, response);
 	}
 
 	/**

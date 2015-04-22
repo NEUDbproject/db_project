@@ -62,7 +62,12 @@
     <description>Refresh Course ID from Provider Coursera </description>
     <servlet-class>controller.CourseRefresh</servlet-class>
   </servlet>
-
+  <servlet>
+    <servlet-name>DeleteCourse</servlet-name>
+    <display-name>DeleteCourse</display-name>
+    <description>Delete Course through manage page </description>
+    <servlet-class>controller.DeleteCourse</servlet-class>
+  </servlet>
 
 
   <servlet-mapping>
@@ -105,6 +110,10 @@
     <servlet-name>CourseRefresh</servlet-name>
     <url-pattern>/CourseRefresh</url-pattern>
   </servlet-mapping>
+<servlet-mapping>
+    <servlet-name>DeleteCourse</servlet-name>
+    <url-pattern>/DeleteCourse</url-pattern>
+  </servlet-mapping> 
   
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
