@@ -114,11 +114,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    <%
    		CourseraAbstract[] courses = (CourseraAbstract[])request.getSession().getAttribute("queryRes");	
    		if(courses != null){
+   			%>
+   			<h2 class="text-left text-danger"><strong>Search Results</strong> Keyword "<%=kwd %>"</h2>
+   			<%
    		for(int i=0;i<courses.length;i++){
    			CourseraAbstract course = courses[i];
    			if(i%4==0){
    				%>
-   					<h2 class="text-left text-danger"><strong>Search Results</strong> Keyword "<%=kwd %>"</h2>
    					<div class="clearfix" style="margin-bottom: 10px;"></div><!-- 清除浮动 -->
 					<div class="row">
    				<%
@@ -127,7 +129,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    				<div class="col-xs-3">
 				<img alt="140x140" src="<%=course.getPhoto() %>"  height=250 width=250/>
 	             <div class="clearfix" style="margin-bottom: 10px;"></div><!-- 清除浮动 -->
-	            <h3 class="text-left"><a href="<%=course.getId()%>"><%=course.getName() %></a></h3>
+	            <h3 class="text-left"><a href="GetCourse?cid=<%=course.getId()%>"><%=course.getName() %></a></h3>
 	            <div class="row">
 	  				<div class="col-xs-7">
 	  					<h4 class="text-left text-success">10000人关注</h4>
@@ -139,8 +141,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    			<%
    			if((i+1)%4==0){
    				%>
-   				</div> 
-      			</div> 
+   				</div>
    				<% 
    			}
    		}
@@ -151,8 +152,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    			<%
    		}
   %>
-   
 
-
+ 
+      			</div> 
 </body>
 </html>

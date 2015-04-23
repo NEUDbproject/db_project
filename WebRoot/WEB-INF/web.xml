@@ -74,6 +74,12 @@
     <description>Search Course by keyword</description>
     <servlet-class>controller.SearchCourse</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>GetCourse</servlet-name>
+  	<display-name>GetCourse</display-name>
+  	<description>Get course information from api and show</description>
+  	<servlet-class>controller.GetCourse</servlet-class>
+  </servlet>
 
 
 
@@ -124,6 +130,10 @@
   <servlet-mapping>
     <servlet-name>SearchCourse</servlet-name>
     <url-pattern>/SearchCourse</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>GetCourse</servlet-name>
+  	<url-pattern>/GetCourse</url-pattern>
   </servlet-mapping> 
   
 	<welcome-file-list>
