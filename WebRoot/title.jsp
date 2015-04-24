@@ -105,13 +105,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	  	//	user = sql.getUserById(userId);
 	  %>
 		
-			<li><form class="btn btn-primary btn-xs" method="get" action="">
+			<li><form method="get" action="">
 			<button class="btn btn-primary btn-xs btn-block"><%=userEmail %></button>
 			</form></li>
 		    <li><button data-toggle="dropdown" class="btn dropdown-toggle"><span class="caret"></span></button></li>
 		   
-			<li><form class="btn btn-primary btn-xs" method="get" action="UserProfile">							
-			<button class="btn btn-primary btn-xs" type="submit" name="userid" value="<%=userId %>" ><%=userId %></button>
+			<li><form method="get" action="UserProfile">
+                 <input type="hidden" name="userid" value="<%=userId%>"/>						
+			<button class="btn btn-primary btn-xs" type="submit" name="userid">My Profile</button>
 		      	</form> </li>	
 		 <li>
 						<ul class="dropdown-menu">

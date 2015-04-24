@@ -12,15 +12,16 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 
+
 import model.*;
 
 
-public class CourseManager extends HttpServlet {
+public class RankManager extends HttpServlet {
 
 	/**
 	 * Constructor of the object.
 	 */
-	public CourseManager() {
+	public RankManager() {
 		super();
 	}
 
@@ -59,12 +60,12 @@ public class CourseManager extends HttpServlet {
 	 */
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		    SqlCourse sql=new SqlCourse();
-		    List<Course> courselist = (ArrayList<Course>) sql.readAllCourses();
+		    SqlRecommend sql=new SqlRecommend();
+		    List<Rank> ranklist = (ArrayList<Rank>) sql.readAllRank();
 		    HttpSession session = request.getSession(true);
-		    session.setAttribute("courselist", courselist);
-		
-		//    response.sendRedirect("manager.jsp");
+		    session.setAttribute("ranklist", ranklist);
+		  
+		    List<Rank> RankList=(List<Rank>)request.getSession().getAttribute("ranklist");
 	}
 
 	/**

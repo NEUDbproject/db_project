@@ -59,23 +59,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   
   
      
-  	<%
-  		
-  		if(session.getAttribute("userId")==null)
-  		{
-  			%><body style="text-align:center;">&nbsp; 
-	  			 您尚未登录。页面<span id="time">5</span>秒后，自动返回登录界面。  <br>
-		  	  <script type="text/javascript">  
-				delayURL("login.jsp"); 
-			  </script>
-			<%
-  		}
-  		else{
-  			String type = request.getSession().getAttribute("type").toString();
 
-
-	  		 if(type.equals("Admin")){
-		  	 %>
   
   
 <body>
@@ -106,8 +90,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <li role="presentation"><a href="#course" aria-controls="course" role="tab" data-toggle="tab">Course</a></li>
     <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Comment</a></li>
     <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Notes</a></li>
-    <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Disscusstion</a></li>
-     <li role="presentation"><a href="#inputs" aria-controls="inputs" role="tab" data-toggle="tab">Input</a></li>
+    <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Course Rank</a></li>
+     <li role="presentation"><a href="#inputs" aria-controls="inputs" role="tab" data-toggle="tab">Course Recommendation</a></li>
   </ul>
 
   <!-- Tab panes -->
@@ -349,7 +333,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			
 	
             </td>
-                </tr>
+     
  
 
  
@@ -438,39 +422,73 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
  
     
     </div>
-    <!-- 下面是Discussion的内容 -->    
+    <!--  
+    <!-- 下面是Course Rank的内容 -->    
        <div role="tabpanel" class="tab-pane" id="settings">
               <div class="table-responsive">
+              
+             <% RankManager rankmanager = new RankManager();  
+                rankmanager.doGet(request, response);
+          %>
+              
+        <%  List<Rank> RankList=(List<Rank>)request.getSession().getAttribute("ranklist");%>
             <table class="table table-striped">
               <thead>
                 <tr>
                   <th>User Id</th>
-                  <th>CommentListId</th>
-                  <th>Subject</th>
-                  <th>Contents</th>
+                  <th>User Name</th>
+                  <th>Target Course Id</th>
+                  <th>Rank</th>
+                  
                   <th class=" text-center">Action</th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>1,001</td>
-                  <td>Lorem</td>
-                  <td>ipsum</td>
-                  <td>Iranian</td>
+               <%
+    		for(int i=0;i<RankList.size();i++){
+    		
+    			Rank newRank = new Rank();
+    			newRank = RankList.get(i);
+    			%><tr><%
+    			 
+    			%><td><%=newRank.getUserId() 
+    			%></td><% 
+
+				%>
+			       <td><%=newRank.getEmail()
+    			%></td>
+                  
+                  <% 	
+    			%>
+				<td><%=newRank.getCourseId() 
+    			%></td><% 	
+    			
+    			%>
+                  <td><%=newRank.getRank() 
+    			%></td>
+                  
+                  <% 	
+    			
+    			%>
+    	
                   
                   
                   <td>
-                  <div class="col-xs-offset-4">
+                  
+            <div class="col-xs-offset-4">
          			<!-- Button trigger modal -->
-		 <button class="btn btn-primary btn-xs" type="submit">Add</button>
-         <button class="btn btn-primary btn-xs" type="submit">Delete</button>
-         <button class="btn btn-primary btn-xs" type="submit">Edit</button>
+           
+		    <button class="btn btn-primary btn-xs" type="submit">Delete</button>
+		 			
 			</div>
+			
             </td>
                 </tr>
 
-  
 
+ 		     <% 
+    			} %>
+    			
                
               </tbody>
             </table>
@@ -496,18 +514,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </ul>
 </nav>
     </div>
-    
-            <!-- 下面是Inputs的内容 -->    
+
+            <!-- 下面是Course Recommendation的内容 -->    
        <div role="tabpanel" class="tab-pane" id="inputs">
   
     <div class ="row">
      <div class = "col-xs-12">
-      <h2 class="sub-header text-primary"><em>This is biaoti</em></h2>
+      <h2 class="sub-header text-primary"><em>Recommendation Manage</em></h2>
       </div>
       <div class="clearfix" style="margin-bottom: 20px;"></div><!-- 清除浮动 -->
        <div class = "col-xs-12">
    			<p>
-				In Anbar Province, Sunni leaders balk at the idea of Shiite militias, which were vital in Tikrit, playing a substantial role in an offensive against the ISIS militants.
+				Please input four recommendation course Id into meta box and divid each one by ",". For example 1,2,3,4. Please input recommendation tag into value box. 
 			</p>
 			 </div>
 			 <div class="clearfix" style="margin-bottom: 20px;"></div><!-- 清除浮动 -->
@@ -543,16 +561,5 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
      </div>
    
 </body>
-<%  } 
-	  		   else
-		  		{
-		  			%>
-	            <body style="text-align:center;">
-	  			 普通用户无权进入管理员界面。页面<span id="time">5</span>秒后，自动返回个人界面。  <br>
-		  	  <script type="text/javascript">  
-				delayURL("title.jsp"); 
-			  </script>
-		  			<%
-		  		}
-	  		}%>
+
 </html>
