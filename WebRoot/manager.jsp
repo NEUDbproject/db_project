@@ -260,7 +260,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                   <td>
                   <div class="col-xs-offset-4">
          			<!-- Button trigger modal -->
-                 <form class="btn btn-primary btn-xs" method="get" action="DeleteCourse">
+                 <form method="get" action="DeleteCourse">
 		    		
 		    			<button class="btn btn-primary btn-xs" type="submit" name="deleteid" value="<%=newCourse.getCourseId()%>" >delete</button>
 		    		
@@ -353,15 +353,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                   <% 	
     			
     			%>
-    	
-                  
+    	          
                   
                   <td>
                   
             <div class="col-xs-offset-4">
          			<!-- Button trigger modal -->
            
-		    <button class="btn btn-primary btn-xs" type="submit">Delete</button>
+		        <form method="get" action="DeletePost">
+		    		
+		    	<button class="btn btn-primary btn-xs" type="submit" name="deleteid" value="<%=newPost.getCommentListId() %>" >delete</button>
+		    		
+		       </form>  
 		 			
 			</div>
 			

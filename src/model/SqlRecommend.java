@@ -153,12 +153,14 @@ public class SqlRecommend {
 		        	String userid=res.getString("UserId");
 		         	String courseid =res.getString("CourseId");
 		            String email =res.getString("email");
+		            String commentlistid=res.getString("CommentListId");
 		        	
 		        	Post post =new Post();
 		        	post.setPostContent(postcontent);
 		        	post.setUserId(userid);
 		        	post.setCourseId(courseid);
 		        	post.setEmail(email);
+		        	post.setCommentListId(commentlistid);
 
 		            postlist.add(post);
 		            //System.out.println(id);     
@@ -219,4 +221,31 @@ public class SqlRecommend {
 		        }  
 			}
 	 
+			   public boolean deletePost(String commentlistid){
+				   int id=Integer.parseInt(commentlistid);
+				   Connection conn=ConnectSql();
+				    Statement st;
+				   
+				   try{
+						
+						String sql = "delete from Post where CommentListId='"+id+"'";
+						String sql2="delete from CommentList where CommentListId='"+id+"'";
+						
+				        st = (Statement) conn.createStatement();
+				        st.executeUpdate(sql);
+				        st.executeUpdate(sql2);
+				        conn.close();
+				        return true;
+				       
+				   }
+				   
+				   catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+						return false;
+					}
+				   
+				
+				  
+			   }
 }

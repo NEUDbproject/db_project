@@ -104,6 +104,12 @@
    	<description>Order Course by some critiria</description>
    	<servlet-class>controller.OrderCourse</servlet-class>
    </servlet>
+    <servlet>
+   	<servlet-name>DeletePost</servlet-name>
+   	<display-name>DeletePost</display-name>
+   	<description>Delete Post in the manage page</description>
+   	<servlet-class>controller.DeletePost</servlet-class>
+   </servlet>
 
   <servlet-mapping>
     <servlet-name>Register</servlet-name>
@@ -172,6 +178,10 @@
   <servlet-mapping>
   	<servlet-name>OrderCourse</servlet-name>
   	<url-pattern>/OrderCourse</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>DeletePost</servlet-name>
+  	<url-pattern>/DeletePost</url-pattern>
   </servlet-mapping>
   
   
