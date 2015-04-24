@@ -2,6 +2,7 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Arrays;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -65,6 +66,7 @@ public class SearchCourse extends HttpServlet {
 		
 		Json CourseraSearch = new Json();
 		CourseraAbstract[] courses = CourseraSearch.getApiInfo(api_prefix+kwd);
+		java.util.List<CourseraAbstract> clist = Arrays.asList(courses);
 		/*SqlCourse csql = new SqlCourse();*/
 		
 		
@@ -80,7 +82,7 @@ public class SearchCourse extends HttpServlet {
 	   	else{
 	   		System.out.println("search res: NULL");
 	   	}
-	   	session.setAttribute("queryRes", courses);
+	   	session.setAttribute("queryRes", clist);
    	 	session.setAttribute("kwd", kwd);
 		response.sendRedirect("search.jsp");
 		

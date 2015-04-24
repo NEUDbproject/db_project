@@ -56,9 +56,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <div class="clearfix" style="margin-bottom: 30px;"></div><!-- 清除浮动 -->
         
        		<div>
-         <button class="btn btn-primary btn-xs" type="button">Order By Time</button>
-         <button class="btn btn-primary btn-xs" type="button">Order By Rank</button>
-         <button class="btn btn-primary btn-xs" type="button">Order BY Mark</button>
+       		 <form action="OrderCourse" method="POST">
+       		 <input type="hidden" name="kwd" value="<%=kwd%>">
+       		 <input type="hidden" name="OrderBy" value="Rate">
+	         <button class="btn btn-primary btn-xs" type="submit">Order By Rate</button>
+	         </form>
 			</div>
       
       <div class="clearfix" style="margin-bottom: 30px;"></div><!-- 清除浮动 -->
@@ -112,13 +114,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</div>
    
    <%
-   		CourseraAbstract[] courses = (CourseraAbstract[])request.getSession().getAttribute("queryRes");	
+   		List<CourseraAbstract> courses = (List<CourseraAbstract>)request.getSession().getAttribute("queryRes");
    		if(courses != null){
    			%>
    			<h2 class="text-left text-danger"><strong>Search Results</strong> Keyword "<%=kwd %>"</h2>
    			<%
-   		for(int i=0;i<courses.length;i++){
-   			CourseraAbstract course = courses[i];
+   		for(int i=0;i<courses.size();i++){
+   			CourseraAbstract course = courses.get(i);
    			if(i%4==0){
    				%>
    					<div class="clearfix" style="margin-bottom: 10px;"></div><!-- 清除浮动 -->
