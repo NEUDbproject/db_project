@@ -2,11 +2,13 @@ package model;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+
 
 public class SqlCourse {
 	public Connection ConnectSql()
@@ -139,6 +141,131 @@ public class SqlCourse {
 		   
 		
 		  
+	   }
+	   
+	   public String getCourseIdByAppId(String appid){
+		   Connection conn=ConnectSql();
+		   Statement st;
+		   String courseId = "0";
+		   try{	
+				String sql = "select CourseId from Course where CourseAPPId='"+appid+"'";
+		        st = (Statement) conn.createStatement();
+		        ResultSet rs = st.executeQuery(sql);
+		        while(rs.next())
+	            {
+		        	courseId = rs.getString("CourseId");
+	            }
+	            conn.close();     
+	    		return courseId;
+		       
+		   }
+		   
+		   catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return "-1";
+			}
+		   		  
+	   }
+	   
+	   
+	   public boolean rateCourseById(String uid, String cid, String score){
+		   Connection conn=ConnectSql();
+		   PreparedStatement ps;
+		   Statement st;
+		   String courseId = "0";
+		   String commentlistId = "0";
+		   try{	
+				String sql = "insert into CommentList(Content,CourseId,UserId)VALUES('RateCourse','"+cid+"','"+uid+"')";
+				System.out.println("CL sql: "+sql);
+		        ps = conn.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
+		        ps.executeUpdate();
+		        
+		        ResultSet rs = ps.getGeneratedKeys();
+		        if (rs.next()) {
+		        	commentlistId = Integer.toString(rs.getInt(1));
+		        }
+		        
+		        
+		        sql = "insert into Rank(CommentListId,Rank)VALUES('"+commentlistId+"','"+score+"')";
+		        st = (Statement) conn.createStatement();
+		        st.executeUpdate(sql);
+				System.out.println("Rank sql: "+sql);
+	            conn.close();     
+	    		return true;
+		   }
+		   
+		   catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return false;
+			}
+		   		  
+	   }
+	   
+	   
+	   public boolean checkRated(String uid, String cid){
+		    Connection conn=ConnectSql();
+			Statement st = null;  
+			String res="";
+			int resCount=0;
+			
+		    String sql = "select * from CommentList where Content='RateCourse' and UserId='"+uid+"' and CourseId='"+cid+"'"; 
+		    System.out.println(sql);
+		    try {
+				st = (Statement)conn.createStatement();
+				ResultSet rs = st.executeQuery(sql);
+				rs.last();
+				resCount = rs.getRow();
+				System.out.println("resCount: "+resCount);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}    
+
+		    if(resCount==1) {  
+		        return true;
+		    }  
+		    else{
+		    	return false;
+		    	
+		    }
+		   		  
+	   }
+	   
+	   
+	   public Double aveScore(String cid){
+		    Connection conn=ConnectSql();
+			Statement st = null;  
+			double resCount=0;
+			double totalScore = 0;
+			
+		    String sql = "select CommentListId from CommentList where Content='RateCourse' and CourseId='"+cid+"'"; 
+		    //System.out.println(sql);
+		    try {
+				st = (Statement)conn.createStatement();
+				ResultSet rs = st.executeQuery(sql);
+				rs.last();
+				resCount = rs.getRow();
+				System.out.println("resCount: "+resCount);
+				if(resCount==0){
+					return 0.0;
+				}else{
+					String sql2 = "select SUM(Rank) from Rank where CommentListId in ("+sql+")";
+					System.out.println("ave sql: "+sql2);
+					st = (Statement)conn.createStatement();
+					ResultSet result = st.executeQuery(sql2);
+					 result.next();
+				     String sum = result.getString(1);
+				     System.out.println("Total Score: "+sum);
+				     totalScore = Double.parseDouble(sum);
+				     return totalScore/resCount;
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return -1.0;
+			}    		   		  
 	   }
 	 
 	 

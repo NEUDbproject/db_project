@@ -1,15 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="model.*" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <%
 	Coursera course = (Coursera)request.getSession().getAttribute("courseRes");
 	CourseraSession csession = (CourseraSession)request.getSession().getAttribute("sessionRes");
 %>
-<title><%=course.getName() %></title>
 <%@ include file="title.jsp" %>
 <!-- 以下为课程标题 以及点赞功能 -->
 <div class="container" style="width:1300px !important"> 
@@ -54,31 +50,34 @@
  <div class="clearfix visible-xs-block"></div>
  <div class ="col-xs-8">
   		<div class="col-xs-3">
-  					<h4 class="text-left text-success">Professor:9.5</h4>
+  					<h4 class="text-left text-success">Average:<%=request.getSession().getAttribute("courseAve") %></h4>
                    </div>
   			<div class="col-xs-3">
-            <h4 class="text-center text-warning">Rate:8.0</h4>
+  			<form action="RateCourse" method="POST" style="display:<%=request.getSession().getAttribute("hasRated").toString()%>">
+            	<select name="score" class="form-control"> 
+				  <option value="1" >1.0--Bad</option>
+				  <option value="2" >2.0--Not Good</option>
+				  <option value="3" >3.0--So So</option>
+				  <option value="4" >4.0--Good</option>
+				  <option value="5" >5.0--Perfect</option>
+				</select>
             </div>
             <div class="col-xs-3 col-xs-offset-1">
-            <h4 class="text-left text-warning">Rate:8.0</h4>
+            	<input type="hidden" value="<%=course.getId()%>" name="courseAppId">
+            	<input type="hidden" value="<%=request.getSession().getAttribute("userId").toString()%>" name="userId">
+            	<%
+            		String disable="";
+            		if(request.getSession().getAttribute("hasRated").toString()=="none"){
+            			disable = "block";
+            		}else{
+            			disable = "none";
+            		}
+            	%>
+				<button type="submit" class="btn btn-warning glyphicon glyphicon-star" style="display:<%=request.getSession().getAttribute("hasRated").toString()%>">Rate</button>
+				<button type="submit" class="btn btn-success glyphicon glyphicon-star" disabled="disabled" style="display:<%=disable%>">Rated</button> 
+			</form>
             </div>
             </div>
-         <div class ="col-xs-8">
-  		<div class="col-xs-3">
-  					<h4 class="text-left text-success">Professor:9.5</h4>
-                   </div>
-            <div class="col-xs-3">
-            <h4 class="text-center text-warning">Rate:8.0</h4>
-            </div>
-            </div> 
-       <div class ="col-xs-8">
-  		<div class="col-xs-3">
-  		<h4 class="text-left text-success">Professor:9.5</h4>
-              </div>
-            <div class="col-xs-3">
-            <h4 class="text-center text-warning">Rate:8.0</h4>
-            </div>
-            </div>  
         <div class ="col-xs-8">
   		<div class="col-xs-7">
   		<h5 class="text-left">Open Date: <%=csession.getStartMonth() %> <%=csession.getStartDay() %>,<%=csession.getStartYear() %></h5>
