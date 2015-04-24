@@ -1,5 +1,6 @@
 package model;
 
+import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -259,7 +260,9 @@ public class SqlCourse {
 				     String sum = result.getString(1);
 				     System.out.println("Total Score: "+sum);
 				     totalScore = Double.parseDouble(sum);
-				     return totalScore/resCount;
+				     BigDecimal b = new BigDecimal(totalScore);  
+				     double finalScore = b.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();  
+				     return finalScore;
 				}
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block

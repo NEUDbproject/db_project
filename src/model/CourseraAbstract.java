@@ -8,6 +8,14 @@ public class CourseraAbstract {
 	String shortName;
 	String name;
 	String photo;
+	Double rate = 0.0 ;
+	
+	public Double getRate() {
+		return rate;
+	}
+	public void setRate(Double rate) {
+		this.rate = rate;
+	}
 	public String getPhoto() {
 		return photo;
 	}
@@ -32,12 +40,13 @@ public class CourseraAbstract {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public CourseraAbstract(String id, String shortName, String name, String photo) {
+	public CourseraAbstract(String id, String shortName, String name, String photo, Double rate) {
 		super();
 		this.id = id;
 		this.shortName = shortName;
 		this.name = name;
 		this.photo = photo;
+		this.rate = rate;
 	}
 	
 	public CourseraAbstract() {

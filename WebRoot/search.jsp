@@ -132,10 +132,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	            <h3 class="text-left"><a href="GetCourse?cid=<%=course.getId()%>"><%=course.getName() %></a></h3>
 	            <div class="row">
 	  				<div class="col-xs-7">
-	  					<h4 class="text-left text-success">10000人关注</h4>
 	                    </div>
 	  			<div class="col-xs-5">
-	            <h4 class="text-left text-warning">评分:9.0</h4></div>
+	            <h4 class="text-left text-warning">Rate:<%=course.getRate() %></h4></div>
 				</div>
 				</div>
    			<%

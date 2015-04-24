@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 
 import library.Json;
 import model.CourseraAbstract;
+import model.SqlCourse;
 
 public class SearchCourse extends HttpServlet {
 
@@ -64,10 +65,17 @@ public class SearchCourse extends HttpServlet {
 		
 		Json CourseraSearch = new Json();
 		CourseraAbstract[] courses = CourseraSearch.getApiInfo(api_prefix+kwd);
+		/*SqlCourse csql = new SqlCourse();*/
+		
 		
 		HttpSession session = request.getSession(true);
 	   	if(courses != null){
 			System.out.println("search res: "+courses.length);
+			/*for(int i =0;i<courses.length;i++){
+				String appid = courses[i].getId();
+				String cid = csql.getCourseIdByAppId(appid);
+				courses[i].setRate(csql.aveScore(cid));
+			}*/
 	   	}
 	   	else{
 	   		System.out.println("search res: NULL");
