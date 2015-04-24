@@ -62,9 +62,11 @@ public class AddPost extends HttpServlet {
 		 String PostTitle = "PostTitle";
 		 String courseAppId = request.getParameter("courseAppId");
 		 String uid = request.getParameter("userId");
+			System.out.println("Coursera Id: "+courseAppId);
+			System.out.println("myuserid: "+uid);
 		 SqlCourse csql = new SqlCourse();
 		 String courseId = csql.getCourseIdByAppId(courseAppId);
-		 String CommentListId = csql.findCommentListIdByUserAndCourse(uid, courseId);
+		 String CommentListId = csql.findCommentListIdByUserAndCourse(uid, courseId,PostContent);
 	  //   String PostTitle = request.getParameter("PostTitle");
 	   //  Integer CommentListId = 100;
 	   //  Integer CommentListId = request.getParameter("CommentListId")toString();
@@ -74,7 +76,7 @@ public class AddPost extends HttpServlet {
 	     NewPost.setCommentListId(CommentListId);
 	   
 	     Boolean res = csql.AddPost(NewPost);
-	     
+	     response.sendRedirect("GetCourse?cid="+courseAppId);
 	     
 	}
 

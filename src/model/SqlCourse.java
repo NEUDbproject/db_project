@@ -289,26 +289,28 @@ public class SqlCourse {
 				}
 				
 			}
-			public String findCommentListIdByUserAndCourse(String userid, String courseid)
+			public String findCommentListIdByUserAndCourse(String userid, String courseid, String postcontent)
 			{
 						Connection conn=ConnectSql();
 						Statement st; 
 						String sql="";
-						String commentlistid = null;
-						
+						String commentlistid = "0";
+						PreparedStatement ps;
 						try {  
-							sql = "select CommentListId from CommentList where UserId='"+userid+"', CourseId='"+courseid+"')";
-				            st = (Statement) conn.createStatement();  
-				            ResultSet rs = st.executeQuery(sql); 
-				            while(rs.next())
-				            {
-				    
-				            	commentlistid = rs.getString("CommentListId");
-					            
-				            }
+							sql = "insert into CommentList(Content,CourseId,UserId)VALUES('"+postcontent+"','"+courseid+"','"+userid+"')";
+							System.out.println("CL sql: "+sql);
+							st = (Statement) conn.createStatement();  
+					        ps = conn.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
+					        ps.executeUpdate();
+					        
+					        ResultSet rs = ps.getGeneratedKeys();
+					        if (rs.next()) {
+					        	commentlistid = Integer.toString(rs.getInt(1));
+					        }
+					        st = (Statement) conn.createStatement();
+					        st.executeUpdate(sql); 
 				            conn.close();   
 				    		return commentlistid;
-				    		
 				              
 				        } catch (SQLException e) {  
 				        	System.out.println(e);

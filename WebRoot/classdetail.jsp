@@ -191,15 +191,15 @@
         	<div class="col-xs-3 text-primary text-center">
 			<!-- Button trigger modal -->
 			
-			
-			
-			
+	<form action="AddPost" method="POST" >		
+	<input type="hidden" value="<%=course.getId()%>" name="courseAppId">
+    <input type="hidden" value="<%=request.getSession().getAttribute("userId").toString()%>" name="userId">	
 <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
   Post New Comment
 </button>
 
 <!-- Modal -->
-<form action="AddPost" method="POST" >
+
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
