@@ -86,8 +86,12 @@
   	<description></description>
   	<servlet-class>controller.RateCourse</servlet-class>
   </servlet>
-
-
+  <servlet>
+  	<servlet-name>AddPost</servlet-name>
+  	<display-name>AddPost</display-name>
+  	<description></description>
+  	<servlet-class>controller.AddPost</servlet-class>
+  </servlet>
 
   <servlet-mapping>
     <servlet-name>Register</servlet-name>
@@ -145,7 +149,10 @@
   	<servlet-name>RateCourse</servlet-name>
   	<url-pattern>/RateCourse</url-pattern>
   </servlet-mapping> 
-  
+  <servlet-mapping>
+  	<servlet-name>AddPost</servlet-name>
+  	<url-pattern>/AddPost</url-pattern>
+  </servlet-mapping> 
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
 		<welcome-file>index.htm</welcome-file>

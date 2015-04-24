@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import library.MD5;
 import model.Post;
+import model.SqlCourse;
 import model.SqlManager;
 
 public class AddPost extends HttpServlet {
@@ -58,15 +59,21 @@ public class AddPost extends HttpServlet {
 			throws ServletException, IOException {
 		 Post NewPost = new Post();
 		 String PostContent = request.getParameter("PostContent");
-	     String PostTitle = request.getParameter("PostTitle");
-	     String CommentListId = request.getParameter("CommentListId");
+		 String PostTitle = "PostTitle";
+		 String courseAppId = request.getParameter("courseAppId");
+		 String uid = request.getParameter("userId");
+		 SqlCourse csql = new SqlCourse();
+		 String courseId = csql.getCourseIdByAppId(courseAppId);
+		 String CommentListId = csql.findCommentListIdByUserAndCourse(uid, courseId);
+	  //   String PostTitle = request.getParameter("PostTitle");
+	   //  Integer CommentListId = 100;
+	   //  Integer CommentListId = request.getParameter("CommentListId")toString();
 	     
 	     NewPost.setPostContent(PostContent);
 	     NewPost.setPostTitle(PostTitle);
 	     NewPost.setCommentListId(CommentListId);
 	   
-	     SqlManager sql=new SqlManager();
-	     Boolean res = sql.AddPost(NewPost);
+	     Boolean res = csql.AddPost(NewPost);
 	     
 	     
 	}

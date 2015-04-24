@@ -90,8 +90,16 @@
   		<div class="col-xs-4">
   		<h5 class="text-left">Professor Name: <%=course.getInstructor() %></h5>
               </div>
-   <div class ="col-xs-4 col-xs-offset-2">
-<a href="<%=csession.getHomeLink()%>"><button type="button" class="btn btn-lg btn-primary">GO TO CLASS</button></a>
+ <div class ="col-xs-4 col-xs-offset-3">
+   
+   <button id = "btn" class="btn btn-primary" type="submit">Go To Class</button> 
+    	   <a href="https://www.coursera.org/course/<%=course.getShortName() %>" id="link"></a>
+           <script>
+           document.getElementById("btn").onclick=function(){
+            document.getElementById("link").click();
+}
+</script>
+     
       </div>
           </div>
           </div>
@@ -182,11 +190,16 @@
 		</div>
         	<div class="col-xs-3 text-primary text-center">
 			<!-- Button trigger modal -->
+			
+			
+			
+			
 <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
   Post New Comment
 </button>
 
 <!-- Modal -->
+<form action="AddPost" method="POST" >
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -194,21 +207,39 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h3 class="modal-title" id="myModalLabel">Post Comment</h3>
       </div>
+       <div class="form-group"> 
       <div class="modal-body" style="height:250px;">
-
+ 
              <div class="col-xs-12 input-group input-group-lg pull-left">
           <span class="input-group-addon input-group-xs" id="sizing-addon1">Comment Input</span>
-          <textarea class="form-control" rows="3" cols="30" style="height:250px"></textarea>
+          <textarea class="form-control" rows="3" cols="30" name="PostContent" style="height:250px"></textarea>
         </div>
+   </div>     
+            
       </div>
+       <div class="form-group">  
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Submit</button>
+       
+        <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+        
       </div>
     </div>
   </div>
 </div>
+
+</form>
+
+
+
+
+
+
 		</div>
+		
+		
+		
 		</div>
 
 		<div class="col-xs-2">

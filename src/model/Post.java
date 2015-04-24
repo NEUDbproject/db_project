@@ -4,7 +4,6 @@ package model;
 
 public class Post {
 	private String CommentListId;
-	private String UserId;
 	private String PostTitle;
 	private String PostContent;
 	
@@ -21,14 +20,6 @@ public class Post {
 	}
 
 
-	public String getUserId() {
-		return UserId;
-	}
-
-
-	public void setUserId(String userId) {
-		UserId = userId;
-	}
 
 
 	public String getPostTitle() {
@@ -55,11 +46,10 @@ public class Post {
 	 * @param postTitle
 	 * @param postContent
 	 */
-	public Post(String commentListId, String userId, String postTitle,
+	public Post(String commentListId, String postTitle,
 			String postContent) {
 		super();
 		CommentListId = commentListId;
-		UserId = userId;
 		PostTitle = postTitle;
 		PostContent = postContent;
 	}

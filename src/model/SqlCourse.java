@@ -267,6 +267,52 @@ public class SqlCourse {
 				return -1.0;
 			}    		   		  
 	   }
-	 
-	 
+	   
+	   
+		 public boolean AddPost(Post Post)
+			{
+				Connection conn=ConnectSql();
+				Statement st; 
+				try{
+					
+					String sql = "insert into Post(PostContent, PostTitle, CommentListId)VALUES('"+Post.getPostContent()+"','"+Post.getPostTitle()+"','"+Post.getCommentListId()+"')";
+					 
+			        st = (Statement) conn.createStatement();
+			        st.executeUpdate(sql);
+			        conn.close();
+			        return true;
+		        }
+				catch(SQLException e)
+				{
+					System.out.println(e); 
+					return false;	
+				}
+				
+			}
+			public String findCommentListIdByUserAndCourse(String userid, String courseid)
+			{
+						Connection conn=ConnectSql();
+						Statement st; 
+						String sql="";
+						String commentlistid = null;
+						
+						try {  
+							sql = "select CommentListId from CommentList where UserId='"+userid+"', CourseId='"+courseid+"')";
+				            st = (Statement) conn.createStatement();  
+				            ResultSet rs = st.executeQuery(sql); 
+				            while(rs.next())
+				            {
+				    
+				            	commentlistid = rs.getString("CommentListId");
+					            
+				            }
+				            conn.close();   
+				    		return commentlistid;
+				    		
+				              
+				        } catch (SQLException e) {  
+				        	System.out.println(e);
+				            return null;
+				        }		
+			}
 }
