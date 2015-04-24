@@ -141,43 +141,13 @@
     <div role="tabpanel" class="tab-pane" id="profile">
    
 	<div class="row">
-		<div class="span12">
-			<dl>
-				<dt>
-					Rolex
-				</dt>
-				<dd>
-					劳力士创始人为汉斯.威尔斯多夫，1908年他在瑞士将劳力士注册为商标。
-				</dd>
-				<dt>
-					Vacheron Constantin
-				</dt>
-				<dd>
-					始创于1775年的江诗丹顿已有250年历史，
-				</dd>
-				<dd>
-					是世界上历史最悠久、延续时间最长的名表之一。
-				</dd>
-				<dt>
-					IWC
-				</dt>
-				<dd>
-					创立于1868年的万国表有“机械表专家”之称。
-				</dd>
-				<dt>
-					Cartier
-				</dt>
-				<dd>
-					卡地亚拥有150多年历史，是法国珠宝金银首饰的制造名家。
-				</dd>
-			</dl>
-		</div>
+
 	</div>
 
 	<div class="row">
 		<div class="col-xs-12 text-primary bg-success lead">
 			<h1>
-				Course Evaluation
+				User Comment
 			</h1>
 		</div>
 	</div>
@@ -201,6 +171,8 @@
 <!-- Modal -->
 
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+
+
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -228,7 +200,6 @@
     </div>
   </div>
 </div>
-
 </form>
 
 
@@ -236,36 +207,40 @@
 
 
 
+
 		</div>
 		
 		
 		
 		</div>
 
+    <div>
+ 
+
+          <%  List<Post> postList=(List<Post>)request.getSession().getAttribute("postlist");%>
+  <%
+    		for(int i=0;i<postList.size();i++){
+    				
+    			Post newPost = new Post();
+    			newPost = postList.get(i);
+    			%> 	
 		<div class="col-xs-2">
 			<img alt="140x140" src="./testtest_files/gg.jpg "class="img-circle img-responsive center-block" alt="Responsive image"/>
 		</div>
 		<div class="col-xs-10">
-			<h3 class="text-left"><a href="http://baidu.com#">Zhang san</a></h3>
+			<h3 class="text-left"><%=newPost.getEmail() %></h3>
 			<p>
-				In Anbar Province, Sunni leaders balk at the idea of Shiite militias, which were vital in Tikrit, playing a substantial role in an offensive against the ISIS militants.
+				<%=newPost.getPostContent() %>
 			</p>
 		 <p>2 minutes ago</p>
 		</div>
       <div class="clearfix" style="margin-bottom: 20px;"></div><!-- 清除浮动 -->
- 
-		<div class="col-xs-2">
-			<img alt="140x140" src="./testtest_files/a.jpg "class="img-circle img-responsive center-block" alt="Responsive image"/>
-		</div>
-		<div class="col-xs-10">
-			<h3 class="text-left"><a href="http://baidu.com#">Li Si</a></h3>
-			<p>
-				The technology industry highlights the difficulties that the American economy has had adapting to modern family life.
-			</p>
-            <p>
-				2015,4,12
-			</p>
-		</div>
+      <% 
+			} %>
+			  
+</div>
+
+
 
 
 

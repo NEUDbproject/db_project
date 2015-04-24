@@ -1,6 +1,8 @@
 package controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -12,7 +14,9 @@ import library.Json;
 import model.Coursera;
 import model.CourseraAbstract;
 import model.CourseraSession;
+import model.Post;
 import model.SqlCourse;
+import model.SqlRecommend;
 
 /**
  * Servlet implementation class GetCourse
@@ -54,7 +58,15 @@ public class GetCourse extends HttpServlet {
 			session.setAttribute("hasRated", "black");
 		}
 		Double ave = csql.aveScore(cid);
-				
+		
+	    
+	    SqlRecommend sql =new SqlRecommend();
+	    
+	    List<Post> postlist = (ArrayList<Post>) sql.getPostByCourseId(cid);
+	    
+	    
+	    session.setAttribute("postlist", postlist);		
+	    
 		session.setAttribute("title", course.getName()+"|OCE");
 		System.out.println("Course Found: "+course.getName());
 		System.out.println("Course Instructor Found: "+course.getInstructor());
