@@ -107,6 +107,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Comment</a></li>
     <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Notes</a></li>
     <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Disscusstion</a></li>
+     <li role="presentation"><a href="#inputs" aria-controls="inputs" role="tab" data-toggle="tab">Input</a></li>
   </ul>
 
   <!-- Tab panes -->
@@ -494,6 +495,44 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     </li>
   </ul>
 </nav>
+    </div>
+    
+            <!-- 下面是Inputs的内容 -->    
+       <div role="tabpanel" class="tab-pane" id="inputs">
+  
+    <div class ="row">
+     <div class = "col-xs-12">
+      <h2 class="sub-header text-primary"><em>This is biaoti</em></h2>
+      </div>
+      <div class="clearfix" style="margin-bottom: 20px;"></div><!-- 清除浮动 -->
+       <div class = "col-xs-12">
+   			<p>
+				In Anbar Province, Sunni leaders balk at the idea of Shiite militias, which were vital in Tikrit, playing a substantial role in an offensive against the ISIS militants.
+			</p>
+			 </div>
+			 <div class="clearfix" style="margin-bottom: 20px;"></div><!-- 清除浮动 -->
+		<form class="form-horizontal" action="AddRecommend" method="POST">	 
+			  <div class = "col-xs-12">
+    <div class="form-group col-xs-4">
+          <input type="text" class="form-control" placeholder="Meta" name="Meta">
+          
+        </div>
+       
+     
+          </div>
+      <div class = "col-xs-12">
+    <div class="form-group col-xs-4">
+          <input type="text" class="form-control" placeholder="Value" name="Value">
+        </div>
+         <div class = "col-xs-12">
+             <button type="submit" class="btn btn-default btn-lg btn-warning">Submit</button>
+         </div>
+          </div>
+          </form>
+      </div>
+
+ 
+
     </div>
   			</div>
 		   </div>   
