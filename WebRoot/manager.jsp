@@ -87,8 +87,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <!-- Nav tabs -->
   <ul class="nav nav-tabs" role="tablist">
     <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">User Management</a></li>
-    <li role="presentation"><a href="#course" aria-controls="course" role="tab" data-toggle="tab">Course</a></li>
-    <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Comment</a></li>
+    <li role="presentation"><a href="#course" aria-controls="course" role="tab" data-toggle="tab">Course Management</a></li>
+    <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Post Management</a></li>
     <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Notes</a></li>
     <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Course Rank</a></li>
      <li role="presentation"><a href="#inputs" aria-controls="inputs" role="tab" data-toggle="tab">Course Recommendation</a></li>
@@ -305,39 +305,73 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     
     
     
-    <!-- 下面是Comment的内容 -->
+    <!-- 下面是Post Management的内容 -->
     
     <div role="tabpanel" class="tab-pane" id="profile">
-            <div class="table-responsive">
+              <div class="table-responsive">
+              
+             <% PostManager postmanager = new PostManager();  
+                postmanager.doGet(request, response);
+          %>
+              
+        <%  List<Post> PostList=(List<Post>)request.getSession().getAttribute("postlist");%>
             <table class="table table-striped">
-  
               <thead>
                 <tr>
                   <th>User Id</th>
-                  <th>CommentListId</th>
-                  <th>Content</th>
-                  <th>TargetId</th>
-                  <th class=" text-center">Header</th>
+                  <th>User Name</th>
+                  <th>Target Course Id</th>
+                  <th>Post Content</th>
+                  
+                  <th class=" text-center">Action</th>
                 </tr>
               </thead>
               <tbody>
-  
+               <%
+    		for(int i=0;i<PostList.size();i++){
+    		
+    			Post newPost = new Post();
+    			newPost = PostList.get(i);
+    			%><tr><%
+    			 
+    			%><td><%=newPost.getUserId() 
+    			%></td><% 
+
+				%>
+			       <td><%=newPost.getEmail()
+    			%></td>
+                  
+                  <% 	
+    			%>
+				<td><%=newPost.getCourseId() 
+    			%></td><% 	
+    			
+    			%>
+                  <td><%=newPost.getPostContent() 
+    			%></td>
+                  
+                  <% 	
+    			
+    			%>
+    	
+                  
+                  
                   <td>
-                  <div class="col-xs-offset-4">
+                  
+            <div class="col-xs-offset-4">
          			<!-- Button trigger modal -->
-		 <button class="btn btn-primary btn-xs" type="submit">Add</button>
-         <button class="btn btn-primary btn-xs" type="submit">Delete</button>
-         <button class="btn btn-primary btn-xs" type="submit">Edit</button>
+           
+		    <button class="btn btn-primary btn-xs" type="submit">Delete</button>
+		 			
 			</div>
 			
-			
-	
             </td>
-     
- 
+                </tr>
 
- 
 
+ 		     <% 
+    			} %>
+    			
                
               </tbody>
             </table>

@@ -16,12 +16,12 @@ import javax.servlet.http.HttpSession;
 import model.*;
 
 
-public class RankManager extends HttpServlet {
+public class PostManager extends HttpServlet {
 
 	/**
 	 * Constructor of the object.
 	 */
-	public RankManager() {
+	public PostManager() {
 		super();
 	}
 
@@ -61,11 +61,11 @@ public class RankManager extends HttpServlet {
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		    SqlRecommend sql=new SqlRecommend();
-		    List<Rank> ranklist = (ArrayList<Rank>) sql.readAllRank();
+		    List<Post> postlist = (ArrayList<Post>) sql.readAllPost();
 		    HttpSession session = request.getSession(true);
-		    session.setAttribute("ranklist", ranklist);
+		    session.setAttribute("postlist", postlist);
 		  
-		//    List<Rank> RankList=(List<Rank>)request.getSession().getAttribute("ranklist");
+		//    List<Rank> RankList=(List<Rank>)request.getSession().getAttribute("postlist");
 	}
 
 	/**

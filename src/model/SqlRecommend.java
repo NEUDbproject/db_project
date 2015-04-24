@@ -132,5 +132,55 @@ public class SqlRecommend {
 			 return ranklist;
 	}
 		 
+		 
+		 public List<Post> readAllPost(){
+			 List<Post> postlist = new ArrayList<Post>();
+			 Connection conn=ConnectSql();
+			 Statement st;
+			 
+			 
+			 try{
+			 	 String sql = "select * from User,Post,CommentList where CommentList.CommentListId = Post.CommentListId and User.UserId = CommentList.UserId";
+			  //   String sql ="select * from Rank";
+				 st = (Statement) conn.createStatement();  
+				 
+		         ResultSet res = st.executeQuery(sql);   
+		         while (res.next()) { 
+		        	
+		        	
+		        	
+		        	String postcontent =res.getString("PostContent");
+		        	String userid=res.getString("UserId");
+		         	String courseid =res.getString("CourseId");
+		            String email =res.getString("email");
+		        	
+		        	Post post =new Post();
+		        	post.setPostContent(postcontent);
+		        	post.setUserId(userid);
+		        	post.setCourseId(courseid);
+		        	post.setEmail(email);
+
+		            postlist.add(post);
+		            //System.out.println(id);     
+		            //System.out.println("test"); 
+		            }  
+			 }
+			 
+			 /*Below is closing the database*/
+			 catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				// close SQL connection
+				finally {
+					try {
+						conn.close();
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			 return postlist;
+	}
 	 
 }
