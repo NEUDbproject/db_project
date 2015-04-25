@@ -194,25 +194,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
             </table>
           </div>
-<nav>
-  <ul class="pagination">
-    <li>
-      <a href="#" aria-label="Previous">
-        <span aria-hidden="true">&laquo;</span>
-      </a>
-    </li>
-    <li><a href="#">1</a></li>
-    <li><a href="#">2</a></li>
-    <li><a href="#">3</a></li>
-    <li><a href="#">4</a></li>
-    <li><a href="#">5</a></li>
-    <li>
-      <a href="#" aria-label="Next">
-        <span aria-hidden="true">&raquo;</span>
-      </a>
-    </li>
-  </ul>
-</nav>
+
 
     </div>
  
@@ -277,25 +259,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
               </tbody>
             </table>
           </div>
-<nav>
-  <ul class="pagination">
-    <li>
-      <a href="#" aria-label="Previous">
-        <span aria-hidden="true">&laquo;</span>
-      </a>
-    </li>
-    <li><a href="#">1</a></li>
-    <li><a href="#">2</a></li>
-    <li><a href="#">3</a></li>
-    <li><a href="#">4</a></li>
-    <li><a href="#">5</a></li>
-    <li>
-      <a href="#" aria-label="Next">
-        <span aria-hidden="true">&raquo;</span>
-      </a>
-    </li>
-  </ul>
-</nav>
+
 <div class="span12">
 <form action="CourseRefresh" method="POST">
 	<button class="btn btn-info" type="submit">Refresh Course Database</button>
@@ -379,25 +343,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
               </tbody>
             </table>
           </div>
-<nav>
-  <ul class="pagination">
-    <li>
-      <a href="#" aria-label="Previous">
-        <span aria-hidden="true">&laquo;</span>
-      </a>
-    </li>
-    <li><a href="#">1</a></li>
-    <li><a href="#">2</a></li>
-    <li><a href="#">3</a></li>
-    <li><a href="#">4</a></li>
-    <li><a href="#">5</a></li>
-    <li>
-      <a href="#" aria-label="Next">
-        <span aria-hidden="true">&raquo;</span>
-      </a>
-    </li>
-  </ul>
-</nav>
+
 
     </div>
     <!-- 下面是Notes的内容 -->
@@ -437,25 +383,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
               </tbody>
             </table>
           </div>
-<nav>
-  <ul class="pagination">
-    <li>
-      <a href="#" aria-label="Previous">
-        <span aria-hidden="true">&laquo;</span>
-      </a>
-    </li>
-    <li><a href="#">1</a></li>
-    <li><a href="#">2</a></li>
-    <li><a href="#">3</a></li>
-    <li><a href="#">4</a></li>
-    <li><a href="#">5</a></li>
-    <li>
-      <a href="#" aria-label="Next">
-        <span aria-hidden="true">&raquo;</span>
-      </a>
-    </li>
-  </ul>
-</nav>
+
  
     
     </div>
@@ -477,7 +405,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                   <th>Target Course Id</th>
                   <th>Rank</th>
                   
-                  <th class=" text-center">Action</th>
                 </tr>
               </thead>
               <tbody>
@@ -513,10 +440,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                   <td>
                   
             <div class="col-xs-offset-4">
-         			<!-- Button trigger modal -->
-           
-		    <button class="btn btn-primary btn-xs" type="submit">Delete</button>
-		 			
+         			<!-- Button trigger modal -->	
 			</div>
 			
             </td>
@@ -531,25 +455,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             </table>
           </div>
  
-<nav>
-  <ul class="pagination">
-    <li>
-      <a href="#" aria-label="Previous">
-        <span aria-hidden="true">&laquo;</span>
-      </a>
-    </li>
-    <li><a href="#">1</a></li>
-    <li><a href="#">2</a></li>
-    <li><a href="#">3</a></li>
-    <li><a href="#">4</a></li>
-    <li><a href="#">5</a></li>
-    <li>
-      <a href="#" aria-label="Next">
-        <span aria-hidden="true">&raquo;</span>
-      </a>
-    </li>
-  </ul>
-</nav>
+
     </div>
 
             <!-- 下面是Course Recommendation的内容 -->    

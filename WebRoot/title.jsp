@@ -63,28 +63,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       
       <!--Modified by Junwei Zheng. Completed  -->
       
-        <li><a href="#">Home</a></li>
-        <li><a href="#">Link</a></li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
-          <ul class="dropdown-menu" role="menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
-            <li class="divider"></li>
-            <li><a href="#">Separated link</a></li>
-            <li class="divider"></li>
-            <li><a href="#">One more separated link</a></li>
-          </ul>
-        </li>
+        <li><a href="http://localhost:8080/db_project/">Home</a></li>
+        <li><a href="#">About</a></li>
         
       </ul> <!-- 左边的部分 -->
  
       <ul class="nav navbar-nav navbar-right ">
+      <div class="row">
            <form class="navbar-form navbar-left" role="search" action="SearchCourse" method="POST">
         <div class="form-group">
           <input type="text" class="form-control" placeholder="Search" name="querykwd">
         </div>
+        
         <button class="btn btn-xs btn-primary" type="submit">Submit</button>
       </form>
       <%
@@ -105,32 +95,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	  	//	user = sql.getUserById(userId);
 	  %>
 		
-			<li><form method="get" action="">
-			<button class="btn btn-primary btn-xs btn-block"><%=userEmail %></button>
-			</form></li>
-		    <li><button data-toggle="dropdown" class="btn dropdown-toggle"><span class="caret"></span></button></li>
-		   
-			<li><form method="get" action="UserProfile">
+			<div class="col-xs-2"><%=userEmail %></div>
+		 
+			<div class="col-xs-2"><form method="get" action="UserProfile">
                  <input type="hidden" name="userid" value="<%=userId%>"/>						
 			<button class="btn btn-primary btn-xs" type="submit" name="userid">My Profile</button>
-		      	</form> </li>	
-		 <li>
-						<ul class="dropdown-menu">
-							<li>
-								<a href="#">Operation</a>
-							</li>
-							<li>
-								<a href="#">Setting</a>
-							</li>
-							<li>
-								<a href="#">More</a>
-							</li>
-							<li class="divider">
-							</li>
-		</ul>
-		</li>
-	  <li><a href="logoff.jsp"><h5>Log Off</h5></a></li>
-		
+		      	</form> 	</div>
+
+	<div class="col-xs-2"> <a href="logoff.jsp"><h5>Log Off</h5></a></div>
+		</div>
 	<%
 	  }
      %>

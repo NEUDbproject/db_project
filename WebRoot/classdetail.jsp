@@ -18,16 +18,8 @@
 				<%=course.getName() %>
 			</h3>
 			<dl>
-				<dt>
-					Short Description
-				</dt>
 		
 			</dl>
-			<div>
-         <button class="btn btn-primary btn-xs" type="submit">Follow</button>
-         <button class="btn btn-primary btn-xs" type="submit">Like</button>
-         <button class="btn btn-primary btn-xs" type="submit">Learned</button>
-			</div>
 		</div>
 	</div>
     
@@ -80,15 +72,13 @@
             </div>
         <div class ="col-xs-8">
   		<div class="col-xs-7">
-  		<h5 class="text-left">Open Date: <%=csession.getStartMonth() %> <%=csession.getStartDay() %>,<%=csession.getStartYear() %></h5>
-              </div>
+  		<h5 class="text-left">Professor Name: <%=course.getInstructor() %></h5>    </div>
             <div class="col-xs-4">
             <h5 class="text-left">Last:<%=course.getEstimatedClassWorkload() %></h5>
             </div>
             </div>
             <div class ="col-xs-8">    
   		<div class="col-xs-4">
-  		<h5 class="text-left">Professor Name: <%=course.getInstructor() %></h5>
               </div>
  <div class ="col-xs-4 col-xs-offset-3">
    
@@ -116,8 +106,7 @@
   <ul class="nav nav-tabs" role="tablist">
     <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Class Description</a></li>
     <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Comment</a></li>
-    <li role="present	ation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Notes</a></li>
-    <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Disscusstion</a></li>
+    <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Notes</a></li>
   </ul>
 
   <!-- Tab panes -->
@@ -225,14 +214,12 @@
     			newPost = postList.get(i);
     			%> 	
 		<div class="col-xs-2">
-			<img alt="140x140" src="./testtest_files/gg.jpg "class="img-circle img-responsive center-block" alt="Responsive image"/>
-		</div>
+			</div>
 		<div class="col-xs-10">
 			<h3 class="text-left"><%=newPost.getEmail() %></h3>
 			<p>
 				<%=newPost.getPostContent() %>
 			</p>
-		 <p>2 minutes ago</p>
 		</div>
       <div class="clearfix" style="margin-bottom: 20px;"></div><!-- 清除浮动 -->
       <% 
@@ -299,109 +286,7 @@ Post New Note
 	</form>	
 	</div>
 	</div>
-	<div class="row">
-        <div class="col-xs-3">
-			<h4 class="text-left"><a href="http://baidu.com#">How to learn Math Well</a></h4>
-    <div class="row">
-        <div class="col-xs-6">
-			<h5 class="text-left"><a href="http://baidu.com#">Zhang San</a></h5>
-            </div>
-            <div class="col-xs-4">
-			<h5 class="text-right">May,1st,2015</h5>
-            </div>
-            </div>
-		 <p>As Senator Rand Paul of Kentucky prepares to announce that he will run for president, his advisers said he would not rely on his father, Ron Paul, who fared well in 2008 and 2012.</p>
-		</div>
-	      <div class="col-xs-3">
-			<h4 class="text-left"><a href="http://baidu.com#">Time to battle!</a></h4>
-		 <div class="row">
-        <div class="col-xs-6">
-			<h5 class="text-left"><a href="http://baidu.com#">Li Si</a></h5>
-            </div>
-            <div class="col-xs-4">
-			<h5 class="text-right">Jan,21st,1995</h5>
-            </div>
-            </div>
-		 <p>The fraternity at the center of an article retracted by the magazine said it would “pursue all available legal action.</p>
-		</div>
-
-	 <div class="col-xs-3">
-			<h4 class="text-left"><a href="http://baidu.com#">How to make websites?</a></h4>
-    <div class="row">
-        <div class="col-xs-6">
-			<h5 class="text-left"><a href="http://baidu.com#">Wang Wu</a></h5>
-            </div>
-            <div class="col-xs-4">
-			<h5 class="text-right">Feb,31st,2015</h5>
-            </div>
-            </div>
-		 <p>Labor might do well to heed baseball, where solidarity between its stars and lesser players has been critical to bargaining success since the mid-’60s</p>
-		</div>
-	 <div class="col-xs-3">
-			<h4 class="text-left"><a href="http://baidu.com#">How to make sql?</a></h4>
-    <div class="row">
-        <div class="col-xs-6">
-			<h5 class="text-left"><a href="http://baidu.com#">Wang Shushu</a></h5>
-            </div>
-            <div class="col-xs-4">
-			<h5 class="text-right">Feb,31st,2015</h5>
-            </div>
-            </div>
-		 <p>Edited by Michael Wiegers, the works of Mr. Stanford, a Mississippi-born poet who committed suicide at 29, show a sensitive, death-haunted and deeply Southern original.</p>
-		</div>
-	    </div>
-   <div class="row">
-        <div class="col-xs-3">
-			<h4 class="text-left"><a href="http://baidu.com#">How to learn Math Well</a></h4>
-    <div class="row">
-        <div class="col-xs-6">
-			<h5 class="text-left"><a href="http://baidu.com#">Zhang San</a></h5>
-            </div>
-            <div class="col-xs-4">
-			<h5 class="text-right">May,1st,2015</h5>
-            </div>
-            </div>
-		 <p>As Senator Rand Paul of Kentucky prepares to announce that he will run for president, his advisers said he would not rely on his father, Ron Paul, who fared well in 2008 and 2012.</p>
-		</div>
-	      <div class="col-xs-3">
-			<h4 class="text-left"><a href="http://baidu.com#">Time to battle!</a></h4>
-		 <div class="row">
-        <div class="col-xs-6">
-			<h5 class="text-left"><a href="http://baidu.com#">Li Si</a></h5>
-            </div>
-            <div class="col-xs-4">
-			<h5 class="text-right">Jan,21st,1995</h5>
-            </div>
-            </div>
-		 <p>The fraternity at the center of an article retracted by the magazine said it would “pursue all available legal action.</p>
-		</div>
-
-	 <div class="col-xs-3">
-			<h4 class="text-left"><a href="http://baidu.com#">How to make websites?</a></h4>
-    <div class="row">
-        <div class="col-xs-6">
-			<h5 class="text-left"><a href="http://baidu.com#">Wang Wu</a></h5>
-            </div>
-            <div class="col-xs-4">
-			<h5 class="text-right">Feb,31st,2015</h5>
-            </div>
-            </div>
-		 <p>Labor might do well to heed baseball, where solidarity between its stars and lesser players has been critical to bargaining success since the mid-’60s</p>
-		</div>
-	 <div class="col-xs-3">
-			<h4 class="text-left"><a href="http://baidu.com#">How to make sql?</a></h4>
-    <div class="row">
-        <div class="col-xs-6">
-			<h5 class="text-left"><a href="http://baidu.com#">Wang Shushu</a></h5>
-            </div>
-            <div class="col-xs-4">
-			<h5 class="text-right">Feb,31st,2015</h5>
-            </div>
-            </div>
-		 <p>Edited by Michael Wiegers, the works of Mr. Stanford, a Mississippi-born poet who committed suicide at 29, show a sensitive, death-haunted and deeply Southern original.</p>
-		</div>
-	</div>
-
+	
  
     
     </div>
@@ -505,31 +390,6 @@ Post New Note
   </div>
     </div>
  <!-- 这是右边的模块-->
- <div class="col-xs-2 col-xs-offset-1">
-  <div class="clearfix" style="margin-bottom: 440px;"></div><!-- 清除浮动 -->
-          <div class="sidebar-module">
-            <h3>Related Classes</h3>
-            <ol class="list-unstyled">
-              <h4><li><a href="http://v3.bootcss.com/examples/blog/#">CS5200</a></li></h4>
-              <h4><li><a href="http://v3.bootcss.com/examples/blog/#">CS5300 2014</a></li></h4>
-              <h4><li><a href="http://v3.bootcss.com/examples/blog/#">Computer Design</a></li></h4>
-              <h4><li><a href="http://v3.bootcss.com/examples/blog/#">Database Development</a></li></h4>
-              <h4><li><a href="http://v3.bootcss.com/examples/blog/#">MySQL</a></li></h4>
-              <h4><li><a href="http://v3.bootcss.com/examples/blog/#">JDBC</a></li></h4>
-              <h4><li><a href="http://v3.bootcss.com/examples/blog/#">Computer Science</a></li></h4>
-              <h4><li><a href="http://v3.bootcss.com/examples/blog/#">MyEclipse</a></li></h4>
-              <h4><li><a href="http://v3.bootcss.com/examples/blog/#">Java Compiler</a></li></h4>
-            </ol>
-          </div>
-          <div class="sidebar-module">
-            <h3>Elsewhere</h3>
-            <ol class="list-unstyled">
-              <h4><li><a href="http://v3.bootcss.com/examples/blog/#">GitHub</a></li></h4>
-              <h4><li><a href="http://v3.bootcss.com/examples/blog/#">Twitter</a></li></h4>
-              <h4><li><a href="http://v3.bootcss.com/examples/blog/#">Facebook</a></li></h4>
-            </ol>
-          </div>
-        </div><!-- /.blog-sidebar -->
       
       </div>
      </div>

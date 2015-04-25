@@ -64,54 +64,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</div>
       
       <div class="clearfix" style="margin-bottom: 30px;"></div><!-- 清除浮动 -->
-  
-  <h2 class="text-left text-danger"><strong>Recommend Courses</strong></h2>
-
-
-	<div class="row">
-		<div class="col-xs-3">
-        <h3 class="text-left"><a href="http://baidu.com#"><u>Computer Science</u></h3>
-		</div>
-		<div class="col-xs-3">
-        <h3 class="text-left text-primary"><a href="http://baidu.com#"><small>DataBase Management</small></a></h3>
-		</div>
-		<div class="col-xs-3">
-        <h3 class="text-left text-primary"><a href="http://baidu.com#"><small>MySQL WorkBench</small></a></h3>
-		</div>
-		<div class="col-xs-3">
-        <h3 class="text-left text-primary"><a href="http://baidu.com#"><small>MyEclipse Development</small></a></h3>
-		</div>
-	</div>
-
-	<div class="row">
-		<div class="col-xs-3">
-        <h3 class="text-left"><a href="http://baidu.com#"><u>Art and History</u></h3>
-		</div>
-		<div class="col-xs-3">
-        <h3 class="text-left text-primary"><a href="http://baidu.com#"><small>Ancient Music</small></a></h3>
-		</div>
-		<div class="col-xs-3">
-        <h3 class="text-left text-primary"><a href="http://baidu.com#"><small>Modern Portrait</small></a></h3>
-		</div>
-		<div class="col-xs-3">
-        <h3 class="text-left text-primary"><a href="http://baidu.com#"><small>Middle Artists</small></a></h3>
-		</div>
-	</div>
-
-	<div class="row">
-		<div class="col-xs-3">
-        <h3 class="text-left"><a href="http://baidu.com#"><u>Physics</u></h3>
-		</div>
-		<div class="col-xs-3">
-        <h3 class="text-left text-primary"><a href="http://baidu.com#"><small>Basketbal Training</small></a></h3>
-		</div>
-		<div class="col-xs-3">
-        <h3 class="text-left text-primary"><a href="http://baidu.com#"><small>How To Play Hearthstone</small></a></h3>
-		</div>
-		<div class="col-xs-3">
-        <h3 class="text-left text-primary"><a href="http://baidu.com#"><small>Road To 5K MMR</small></a></h3>
-		</div>
-	</div>
+ 
    
    <%
    		List<CourseraAbstract> courses = (List<CourseraAbstract>)request.getSession().getAttribute("queryRes");

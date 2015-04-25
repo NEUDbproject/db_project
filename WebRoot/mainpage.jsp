@@ -43,7 +43,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<div class="row">
 		<div class="text-primary col-xs-2">
 			<h2>
-				<em><strong>编辑推荐：</strong></em>
+				<em><strong>Recommend Course:</strong></em>
 			</h2>
 		</div>
 	</div>
@@ -55,191 +55,70 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	        <% 
 	       String meta ="";
 	      SqlRecommend sql = new SqlRecommend();
+	      SqlCourse csql = new SqlCourse();
 	      meta =sql.findMetaByValue("pp");  
           Json Coursera = new Json();
           CourseraAbstract[] courses = Coursera.getApiInfo("https://api.coursera.org/api/catalog.v1/courses?fields=photo&ids="+meta);
-          CourseraAbstract course_0 = courses[0];
-          CourseraAbstract course_1 = courses[1];
-          CourseraAbstract course_2 = courses[2];
-          CourseraAbstract course_3 = courses[3];
-          
-          %>
-		 <div class="col-xs-3 ">
-			<img alt="140x140" src="<%=course_0.getPhoto() %>"  height=250 width=250/>
+          for(int i =0;i<courses.length;i++){
+			String appid = courses[i].getId();
+			String cid = csql.getCourseIdByAppId(appid);
+			courses[i].setRate(csql.aveScore(cid));
+			%>
+			<div class="col-xs-3 ">
+			<img alt="140x140" src="<%=courses[i].getPhoto() %>"  height=250 width=250/>
              <div class="clearfix" style="margin-bottom: 10px;"></div><!-- 清除浮动 -->
-            <h3 class="text-left"><a href="GetCourse?cid=<%=course_0.getId()%>"><%=course_0.getName() %></a></h3>
+            <h3 class="text-left"><a href="GetCourse?cid=<%=courses[i].getId()%>"><%=courses[i].getName() %></a></h3>
             <div class="row">
   				<div class="col-xs-8">
-  					<h4 class="text-left text-success">10000人关注</h4>
                     </div>
   			<div class="col-xs-4">
-            <h4 class="text-left text-warning">评分:9.0</h4></div>
+            <h4 class="text-left text-warning">Rate:<%=courses[i].getRate() %></h4></div>
 			</div>
 		</div>
-		 <div class="col-xs-3 ">
-			<img alt="140x140" src="<%=course_1.getPhoto() %>"  height=250 width=250/>
-            <div class="clearfix" style="margin-bottom: 10px;"></div><!-- 清除浮动 -->
-            <h3><a href="GetCourse?cid=<%=course_1.getId()%>"><%=course_1.getName() %></a></h3>
-            <div class="row">
-  				<div class="col-xs-8">
-  					<h4 class="text-left text-success">5045人关注</h4>
-                   </div>
-  			<div class="col-xs-4">
-            <h4 class="text-center text-warning">评分:8.0</h4></div>
-			</div>
-		</div>
-		<div class="col-xs-3">
-			<img alt="140x140" src="<%=course_2.getPhoto() %>"  height=250 width=250/>
-            <div class="clearfix" style="margin-bottom: 10px;"></div><!-- 清除浮动 -->
-            <h3><a href="GetCourse?cid=<%=course_2.getId()%>"><%=course_2.getName() %></a></h3>
-                        <div class="row">
-  				<div class="col-xs-8">
-  					<h4 class="text-left text-success">5045人关注</h4>
-                   </div>
-  			<div class="col-xs-4">
-            <h4 class="text-center text-warning">评分:8.0</h4></div>
-			</div>
-		</div>
-		
-        
-        <div class="col-xs-3">
-			<img alt="140x140" src="<%=course_3.getPhoto() %>"  height=250 width=250/>
-            <div class="clearfix" style="margin-bottom: 10px;"></div><!-- 清除浮动 -->
-            <h3><a href="GetCourse?cid=<%=course_3.getId()%>"><%=course_3.getName() %></a></h3>
-                        <div class="row">
-  				<div class="col-xs-8">
-  					<h4 class="text-left text-success">5045人关注</h4>
-                   </div>
-  			<div class="col-xs-4">
-            <h4 class="text-center text-warning">评分:8.0</h4>
-            </div>
-			</div>
-		</div>
+			
+			
+			<%
+		  }
+          %>
+		 
 </div>
           <div class="clearfix" style="margin-bottom: 10px;"></div><!-- 清除浮动 -->
 <!--热门课程-->
  	<div class="row">
 		<div class="text-primary col-xs-2">
 			<h2>
-				<em><strong>热门课程：</strong></em>
+				<em><strong>Hot Course:</strong></em>
 			</h2>
 		</div>
 	</div>
-	<div class="row">
-		 <div class="col-xs-3 ">
-			<img alt="140x140" src="./testtest_files/uther.jpg"  height=250 width=250/>
-             <div class="clearfix" style="margin-bottom: 10px;"></div><!-- 清除浮动 -->
-            <h3 class="text-left"><a href="http://baidu.com#">Physicis</a></h3>
-            <div class="row">
-  				<div class="col-xs-8">
-  					<h4 class="text-left text-success">10000人关注</h4>
-                    </div>
-  			<div class="col-xs-4">
-            <h4 class="text-left text-warning">评分:9.0</h4></div>
-			</div>
-		</div>
-		 <div class="col-xs-3 ">
-			<img alt="140x140" src="./testtest_files/jiana.jpg"  height=250 width=250/>
-            <div class="clearfix" style="margin-bottom: 10px;"></div><!-- 清除浮动 -->
-            <h3><a href="http://baidu.com#">Music</a></h3>
-            <div class="row">
-  				<div class="col-xs-8">
-  					<h4 class="text-left text-success">5045人关注</h4>
-                   </div>
-  			<div class="col-xs-4">
-            <h4 class="text-center text-warning">评分:8.0</h4></div>
-			</div>
-		</div>
-		<div class="col-xs-3">
-			<img alt="140x140" src="./testtest_files/zhanshi.jpg"  height=250 width=250/>
-            <div class="clearfix" style="margin-bottom: 10px;"></div><!-- 清除浮动 -->
-            <h3><a href="http://baidu.com#">Math</a></h3>
-                        <div class="row">
-  				<div class="col-xs-8">
-  					<h4 class="text-left text-success">5045人关注</h4>
-                   </div>
-  			<div class="col-xs-4">
-            <h4 class="text-center text-warning">评分:8.0</h4></div>
-			</div>
-		</div>
+		<%
+			meta = "2832,2856,781,56";
+        	CourseraAbstract[] courses1 = Coursera.getApiInfo("https://api.coursera.org/api/catalog.v1/courses?fields=photo&ids="+meta);
+        	for(int i =0;i<courses1.length;i++){
+    			String appid = courses1[i].getId();
+    			String cid = csql.getCourseIdByAppId(appid);
+    			courses1[i].setRate(csql.aveScore(cid));
+    			%>
+    			<div class="col-xs-3 ">
+    			<img alt="140x140" src="<%=courses1[i].getPhoto() %>"  height=250 width=250/>
+                 <div class="clearfix" style="margin-bottom: 10px;"></div><!-- 清除浮动 -->
+                <h3 class="text-left"><a href="GetCourse?cid=<%=courses1[i].getId()%>"><%=courses1[i].getName() %></a></h3>
+                <div class="row">
+      				<div class="col-xs-8">
+                        </div>
+      			<div class="col-xs-4">
+                <h4 class="text-left text-warning">Rate:<%=courses1[i].getRate() %></h4></div>
+    			</div>
+    		</div>
+    			
+    			
+    			<%
+    		  }
+              %>
 		
-        
-        <div class="col-xs-3">
-			<img alt="140x140" src="./testtest_files/druid.jpg"  height=250 width=250/>
-            <div class="clearfix" style="margin-bottom: 10px;"></div><!-- 清除浮动 -->
-            <h3><a href="http://baidu.com#">Chemistry</a></h3>
-                        <div class="row">
-  				<div class="col-xs-8">
-  					<h4 class="text-left text-success">5045人关注</h4>
-                   </div>
-  			<div class="col-xs-4">
-            <h4 class="text-center text-warning">评分:8.0</h4>
-            </div>
-			</div>
-		</div>
-</div>
+
           <div class="clearfix" style="margin-bottom: 10px;"></div><!-- 清除浮动 -->
- 
-     <!-- 专题推荐 -->
-		<div class="row">
-		<div class="text-primary col-xs-2">
-			<h2>
-				<em><strong>专题推荐：</strong></em>
-			</h2>
-		</div>
-	</div>
-	<div class="row">
-		 <div class="col-xs-3 ">
-			<img alt="140x140" src="./testtest_files/uther.jpg"  height=250 width=250/>
-             <div class="clearfix" style="margin-bottom: 10px;"></div><!-- 清除浮动 -->
-            <h3 class="text-left"><a href="http://baidu.com#">Physicis</a></h3>
-            <div class="row">
-  				<div class="col-xs-8">
-  					<h4 class="text-left text-success">10000人关注</h4>
-                    </div>
-  			<div class="col-xs-4">
-            <h4 class="text-left text-warning">评分:9.0</h4></div>
-			</div>
-		</div>
-		 <div class="col-xs-3 ">
-			<img alt="140x140" src="./testtest_files/jiana.jpg"  height=250 width=250/>
-            <div class="clearfix" style="margin-bottom: 10px;"></div><!-- 清除浮动 -->
-            <h3><a href="http://baidu.com#">Music</a></h3>
-            <div class="row">
-  				<div class="col-xs-8">
-  					<h4 class="text-left text-success">5045人关注</h4>
-                   </div>
-  			<div class="col-xs-4">
-            <h4 class="text-center text-warning">评分:8.0</h4></div>
-			</div>
-		</div>
-		<div class="col-xs-3">
-			<img alt="140x140" src="./testtest_files/zhanshi.jpg"  height=250 width=250/>
-            <div class="clearfix" style="margin-bottom: 10px;"></div><!-- 清除浮动 -->
-            <h3><a href="http://baidu.com#">Math</a></h3>
-                        <div class="row">
-  				<div class="col-xs-8">
-  					<h4 class="text-left text-success">5045人关注</h4>
-                   </div>
-  			<div class="col-xs-4">
-            <h4 class="text-center text-warning">评分:8.0</h4></div>
-			</div>
-		</div>
-		
-        
-        <div class="col-xs-3">
-			<img alt="140x140" src="./testtest_files/druid.jpg"  height=250 width=250/>
-            <div class="clearfix" style="margin-bottom: 10px;"></div><!-- 清除浮动 -->
-            <h3><a href="http://baidu.com#">Chemistry</a></h3>
-                        <div class="row">
-  				<div class="col-xs-8">
-  					<h4 class="text-left text-success">5045人关注</h4>
-                   </div>
-  			<div class="col-xs-4">
-            <h4 class="text-center text-warning">评分:8.0</h4>
-            </div>
-			</div>
-		</div>
+
 </div>
 
 </div>

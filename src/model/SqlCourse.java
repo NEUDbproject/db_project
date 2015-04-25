@@ -260,7 +260,8 @@ public class SqlCourse {
 				     String sum = result.getString(1);
 				     System.out.println("Total Score: "+sum);
 				     totalScore = Double.parseDouble(sum);
-				     BigDecimal b = new BigDecimal(totalScore);  
+				     double average = totalScore/resCount;
+				     BigDecimal b = new BigDecimal(average);  
 				     double finalScore = b.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();  
 				     return finalScore;
 				}

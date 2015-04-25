@@ -42,9 +42,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    	<span class="glyphicon glyphicon-align-left" aria-hidden="true"></span>Add User</strong></h1>
   </div>
   <div class="form-group has-warning">  
-  <label for="inputUserId3" class="col-sm-2 control-label text-primary"><h3><u>UserId</u></h3></label>
+  <label for="inputUserId3" class="col-sm-2 control-label text-primary"></label>
       <div class="col-sm-4">
-     		<label for="inputUserId3" class="control-label text-primary"><h3>001901818</h3></label>
       </div>
   </div>
  <div class="form-group has-warning">

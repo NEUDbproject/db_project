@@ -9,7 +9,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <head>
     <base href="<%=basePath%>">
     
-    <title>用户登出</title>
+    <title>Logging out</title>
     
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
@@ -40,7 +40,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
      %>
       	Logging off, you will be send back to Home in <span id="time">5</span>seconds.<br>
 	  	  <script type="text/javascript">  
-			delayURL("index.jsp"); 
+			delayURL("login.jsp"); 
 		  </script>
   </body>
 </html>
