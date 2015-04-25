@@ -1,6 +1,8 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ page import="model.*" %>
 <%@ page import="controller.*" %>
+<%@ page import="library.*" %>
+
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -63,11 +65,35 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   
   
 <body>
+  	<%
+  		
+ 		if(session.getAttribute("userId")==null)
+ 				
+  		{
+  			%><body style="text-align:center;">&nbsp; 
+	  			 Please login first&nbsp;&nbsp;<span id="time">5</span>seconds，redirect to the login page。  <br>
+		  	  <script type="text/javascript">  
+				delayURL("login.jsp"); 
+			  </script>
+			<%
+  	}
+  		else{
+  		  String type = request.getSession().getAttribute("type").toString();
+
+
+	  		 if(type.equals("Admin")){
+	  				 
+		  	 %>
+
+
+
+
+
 
 
 
  <!-- 以下为用户，课程管理功能 -->
-<div class="container" style="width:1200px !important"> 
+<div class="container" style="width:1350px !important"> 
 <div class="row">
 <div class="col-xs-11 col-xs-offset-1">
 	
@@ -201,37 +227,52 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
        <!-- 下面是Course Management的内容 -->
     <div role="tabpanel" class="tab-pane" id="course">
               <div class="table-responsive">
-            <table class="table table-striped">
+           <table class="table table-striped" style="table-layout:fixed">
             
+      
                        <% CourseManager coursemanager = new CourseManager();  
               coursemanager.doGet(request, response);          
           %>
-          <%  List<Course> courseList=(List<Course>)request.getSession().getAttribute("courselist");%>
+          <%  List<Course> courseList=(List<Course>)request.getSession().getAttribute("courselist");
+          Json Coursera = new Json();
+          CourseraAbstract[] courses = Coursera.getApiInfo("https://api.coursera.org/api/catalog.v1/courses");
+          
+          
+          %>
           
               <thead>
                 <tr>
-                  <th>Course Id#</th>
-                  <th>Course APP Id</th>
-                  <th>Provider</th>
-                  <th class="text-center">Header</th>
+                  <th width="100px">Course Id</th>
+                  <th width="100px">Course APP Id</th>
+                  <th width="100px">Provider</th>
+                  <th width="250px" class="text-center">Header</th>
+                  <th width="100px" class="text-center">Option</th>
                 </tr>
               </thead>
               <tbody>
                <%
-    		for(int i=0;i<courseList.size();i++){
+    		for(int i=0;i<courses.length;i++){
+    			
+    			CourseraAbstract course = courses[i];
     		
     			Course newCourse = new Course();
     			newCourse = courseList.get(i);
     			%><tr><%
     			 
-    			%><td><%=newCourse.getCourseId() 
+    			%><td style="white-space:nowrap; overflow:hidden; text-overflow:ellipsis"><%=newCourse.getCourseId() 
     			%></td><% 
 
-				%><td><%=newCourse.getCourseAPPId() 
+				%><td style="white-space:nowrap; overflow:hidden; text-overflow:ellipsis"><%=newCourse.getCourseAPPId() 
     			%></td><% 	
     			
     			%>
-                  <td><%=newCourse.getProvider() 
+                  <td style="white-space:nowrap; overflow:hidden; text-overflow:ellipsis"><%=newCourse.getProvider() 
+    			%></td>
+                  
+                  <% 	
+    			
+    			%>
+                  <td style="white-space:nowrap; overflow:hidden; text-overflow:ellipsis"><%=course.getName()
     			%></td>
                   
                   <% 	
@@ -239,7 +280,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     			%>
                   
                   
-                  <td>
+                  <td style="white-space:nowrap; overflow:hidden; text-overflow:ellipsis">
                   <div class="col-xs-offset-4">
          			<!-- Button trigger modal -->
                  <form method="get" action="DeleteCourse">
@@ -504,5 +545,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
      </div>
    
 </body>
+
+
+
+
+
+
+<%  } 
+	 		   else
+	  		{
+		  			%>
+	            <body style="text-align:center;">
+	  			 普通用户无权进入管理员界面。页面<span id="time">5</span>秒后，自动返回个人界面。  <br>
+		  	  <script type="text/javascript">  
+				delayURL("title.jsp"); 
+			  </script>
+		  			<%
+		  		}  		}%>
 
 </html>
