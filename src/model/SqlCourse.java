@@ -292,17 +292,40 @@ public class SqlCourse {
 				}
 				
 			}
+		 
+		 public boolean AddNote(Note Note)
+			{
+				Connection conn=ConnectSql();
+				Statement st; 
+				try{
+					
+					String sql = "insert into Note(NoteURL, NoteTitle, CommentListId)VALUES('"+Note.getNoteURL()+"','"+Note.getNoteTitle()+"','"+Note.getCommentListId()+"')";
+					 
+			        st = (Statement) conn.createStatement();
+			        st.executeUpdate(sql);
+			        conn.close();
+			        return true;
+		        }
+				catch(SQLException e)
+				{
+					System.out.println(e); 
+					return false;	
+				}
+				
+			}
+		 
+		 
 			public String findCommentListIdByUserAndCourse(String userid, String courseid, String postcontent)
 			{
 						Connection conn=ConnectSql();
-						Statement st; 
+						//Statement st; 
 						String sql="";
 						String commentlistid = "0";
 						PreparedStatement ps;
 						try {  
 							sql = "insert into CommentList(Content,CourseId,UserId)VALUES('"+postcontent+"','"+courseid+"','"+userid+"')";
 							System.out.println("CL sql: "+sql);
-							st = (Statement) conn.createStatement();  
+							//st = (Statement) conn.createStatement();  
 					        ps = conn.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
 					        ps.executeUpdate();
 					        
@@ -310,8 +333,8 @@ public class SqlCourse {
 					        if (rs.next()) {
 					        	commentlistid = Integer.toString(rs.getInt(1));
 					        }
-					        st = (Statement) conn.createStatement();
-					        st.executeUpdate(sql); 
+					        //st = (Statement) conn.createStatement();
+					       // st.executeUpdate(sql); 
 				            conn.close();   
 				    		return commentlistid;
 				              

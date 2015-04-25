@@ -110,6 +110,12 @@
    	<description>Delete Post in the manage page</description>
    	<servlet-class>controller.DeletePost</servlet-class>
    </servlet>
+       <servlet>
+   	<servlet-name>AddNote</servlet-name>
+   	<display-name>AddNote</display-name>
+   	<description>AddNote In ClassMain Page</description>
+   	<servlet-class>controller.AddNote</servlet-class>
+   </servlet>
 
   <servlet-mapping>
     <servlet-name>Register</servlet-name>
@@ -183,7 +189,10 @@
   	<servlet-name>DeletePost</servlet-name>
   	<url-pattern>/DeletePost</url-pattern>
   </servlet-mapping>
-  
+    <servlet-mapping>
+  	<servlet-name>AddNote</servlet-name>
+  	<url-pattern>/AddNote</url-pattern>
+  </servlet-mapping>
   
   
 	<welcome-file-list>

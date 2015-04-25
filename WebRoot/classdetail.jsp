@@ -253,10 +253,51 @@
 				Course Notes
 			</h2>
 		</div>
-		<div class="col-xs-3">
-         <div class="clearfix" style="margin-bottom: 15px;"></div><!-- 清除浮动 -->
-<button type="submit" class="btn btn-lg btn-primary btn-block">Post New Notes</button>
-		</div>
+	  <div class="col-xs-3">	
+	<form action="AddNote" method="POST" >		
+	<input type="hidden" value="<%=course.getId()%>" name="courseAppId">
+    <input type="hidden" value="<%=request.getSession().getAttribute("userId").toString()%>" name="userId">	
+	<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModaltwo">
+Post New Note
+</button>
+		
+<div class="modal fade" id="myModaltwo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+
+
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h3 class="modal-title" id="myModalLabel">Post Note</h3>
+      </div>
+       <div class="form-group"> 
+      <div class="modal-body" style="height:150px;">
+             <div class="col-xs-12 input-group input-group-lg pull-left">
+          <span class="input-group-addon input-group-xs" id="sizing-addon1">Url Input</span>
+          <textarea class="form-control" rows="3" cols="30" name="NoteURL" style="height:150px"></textarea>
+        </div>
+   </div>     
+            
+      </div>
+       <div class="form-group">  
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+       
+        <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
+		
+		
+		
+		
+		
+		
+	</form>	
+	</div>
 	</div>
 	<div class="row">
         <div class="col-xs-3">
