@@ -11,9 +11,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import library.MD5;
-import model.SqlManager;
-import model.User;
+
+
+import model.*;
+
 
 public class UserProfile extends HttpServlet {
 
@@ -62,11 +63,15 @@ public class UserProfile extends HttpServlet {
 		    String userid =request.getParameter("userid");  
 		    
 		    SqlManager sql=new SqlManager();
+		    SqlRecommend sql2 = new SqlRecommend(); 
 		    
 		    User user = new User(); 
 		    user=sql.getUserById(userid);
+		    List<Post> postlist = new ArrayList<Post>();
+		    postlist=sql2.getPostById(userid);
 		    HttpSession session = request.getSession(true);
 		    session.setAttribute("userprofile", user);
+		    session.setAttribute("userpost", postlist);
 		//    System.out.println("Userlist Size: "+userlist.size());
 		     response.sendRedirect("userprofile.jsp");
 	}

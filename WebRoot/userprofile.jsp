@@ -1,5 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-<%@ page import="model.User" %>
+<%@ page import="model.*" %>
 <%@ page import="controller.*" %>
 <%
 String path = request.getContextPath();
@@ -162,28 +162,51 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
  
     <!-- 下面是User Comment Information -->
     
+    
+       
+           <% PostManager postmanager = new PostManager();  
+              postmanager.doGet(request, response);          
+          %>
+      <%  List<Post> postList=(List<Post>)request.getSession().getAttribute("userpost");%>
     <div role="tabpanel" class="tab-pane" id="profile">
             <div class="table-responsive">
             <table class="table table-striped">
               <thead>
                 <tr>
-                  <th>CommentListId</th>
-                  <th>Content</th>
-                  <th>TargetId</th>
-                  <th>Action</th>
+                  <th>Target CourseId</th>
+                  <th>Post Content</th>
+
                 </tr>
               </thead>
+
               <tbody>
-                <tr>
-                  <td>1,001</td>
-                  <td>Lorem</td>
-                  <td>ipsum</td>
-				<td>
-         <button class="btn btn-primary btn-xs" type="submit">Delete</button>
-         <button class="btn btn-primary btn-xs" type="submit">Edit</button>
-            </td>
-              </tr> 
+               <%
+    		for(int i=0;i<postList.size();i++){
+    		
+    			Post newPost = new Post();
+    			newPost = postList.get(i);
+    			%><tr><%
+    			 
+    			%><td><%=newPost.getCourseId() 
+    			%></td><% 
+
+				%><td><%=newPost.getPostContent()
+    			%></td><% 	
+    			
+    			%>
+                  
+
+                </tr>
+
+
+ 		     <% 
+    			} %>
+    			
+               
               </tbody>
+
+
+
             </table>
           </div>
 <nav>
@@ -207,6 +230,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </nav>
 
     </div>
+    
+    
+    
     <!-- 下面是User Note Information -->
     <div role="tabpanel" class="tab-pane" id="messages">   
   	 <div class="table-responsive">

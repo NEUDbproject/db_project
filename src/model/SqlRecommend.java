@@ -248,4 +248,39 @@ public class SqlRecommend {
 				
 				  
 			   }
+			   
+				public List<Post> getPostById(String id)
+				{
+					int userid = Integer.parseInt(id);
+					List<Post> postlist=new ArrayList<Post>();
+					Connection conn=ConnectSql();
+					Statement st; 
+					String sql="";
+					try {  
+						sql = "select * from Post,CommentList,User where Post.CommentListId = CommentList.CommentListId and CommentList.UserId = User.UserId and User.UserId='"+userid+"'";
+			            st = (Statement) conn.createStatement();  
+			            ResultSet res = st.executeQuery(sql); 
+			            while(res.next())
+			            {
+                            
+				        	String courseid=res.getString("CourseId");
+				        	String postcontent=res.getString("PostContent");
+                            Post Post = new Post();
+				            Post.setCourseId(courseid);
+				            Post.setPostContent(postcontent);
+				            postlist.add(Post);
+
+				           
+			            }
+			            conn.close();  
+			    		return postlist;
+			    		
+			              
+			        } catch (SQLException e) {  
+			        	System.out.println(e);
+			            return null;
+			        }  
+				}
+
+
 }
