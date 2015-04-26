@@ -173,7 +173,7 @@
  
              <div class="col-xs-12 input-group input-group-lg pull-left">
           <span class="input-group-addon input-group-xs" id="sizing-addon1">Comment Input</span>
-          <textarea class="form-control" rows="3" cols="30" name="PostContent" style="height:250px"></textarea>
+          <textarea class="form-control" rows="3" cols="30" name="NoteURL" style="height:250px"></textarea>
         </div>
    </div>     
             
@@ -200,10 +200,9 @@
 		</div>
 		
 		
-		
 		</div>
 
-    <div>
+		    <div>
  
 
           <%  List<Post> postList=(List<Post>)request.getSession().getAttribute("postlist");%>
@@ -285,8 +284,33 @@ Post New Note
 		
 	</form>	
 	</div>
-	</div>
 	
+	
+	
+	</div>
+		    <div>
+ 
+
+          <%  List<Note> noteList=(List<Note>)request.getSession().getAttribute("notelist");%>
+  <%
+    		for(int i=0;i<noteList.size();i++){
+    				
+    			Note newNote = new Note();
+    			newNote = noteList.get(i);
+    			%> 	
+		<div class="col-xs-2">
+			</div>
+		<div class="col-xs-10">
+			<h3 class="text-left"><%=newNote.getEmail() %></h3>
+			<p>
+				<%=newNote.getNoteURL() %>
+			</p>
+		</div>
+      <div class="clearfix" style="margin-bottom: 20px;"></div><!-- 清除浮动 -->
+      <% 
+			} %>
+			  
+</div>
  
     
     </div>

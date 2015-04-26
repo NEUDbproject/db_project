@@ -184,7 +184,57 @@ public class SqlRecommend {
 				}
 			 return postlist;
 	}
-		 
+		 public List<Note> readAllNote(){
+			 List<Note> notelist = new ArrayList<Note>();
+			 Connection conn=ConnectSql();
+			 Statement st;
+			 
+			 
+			 try{
+			 	 String sql = "select * from User,Note,CommentList where CommentList.CommentListId = Note.CommentListId and User.UserId = CommentList.UserId";
+			  //   String sql ="select * from Rank";
+				 st = (Statement) conn.createStatement();  
+				 
+		         ResultSet res = st.executeQuery(sql);   
+		         while (res.next()) { 
+		        	
+		        	
+		        	
+		        	String noteurl =res.getString("NoteURL");
+		        	String userid=res.getString("UserId");
+		         	String courseid =res.getString("CourseId");
+		            String email =res.getString("email");
+		            String commentlistid=res.getString("CommentListId");
+		        	
+		        	Note note =new Note();
+		        	note.setNoteURL(noteurl);
+		        	note.setUserId(userid);
+		        	note.setCourseId(courseid);
+		        	note.setEmail(email);
+		        	note.setCommentListId(commentlistid);
+
+		            notelist.add(note);
+		            //System.out.println(id);     
+		            //System.out.println("test"); 
+		            }  
+			 }
+			 
+			 /*Below is closing the database*/
+			 catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				// close SQL connection
+				finally {
+					try {
+						conn.close();
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			 return notelist;
+	}
 		 
 			public List<Post> getPostByCourseId(String id)
 			{
@@ -220,7 +270,40 @@ public class SqlRecommend {
 		            return null;
 		        }  
 			}
-	 
+			public List<Note> getNoteByCourseId(String id)
+			{
+				int courseid = Integer.parseInt(id);
+				
+				List<Note> notelist = new ArrayList<Note>();
+				Connection conn=ConnectSql();
+				Statement st; 
+				String sql="";
+				try {  
+					sql = "select * from User,Note,CommentList where Note.CommentListId = CommentList.CommentListId and CommentList.UserId = User.UserId and CommentList.CourseId='"+courseid+"'";
+		            st = (Statement) conn.createStatement();  
+		            ResultSet res = st.executeQuery(sql); 
+		            while(res.next())
+		            {
+			        	String email = res.getString("Email");
+			        	String noteurl=res.getString("NoteURL");
+			             
+			        	Note note =new Note();
+		                note.setEmail(email);
+		                note.setNoteURL(noteurl);
+		                notelist.add(note);
+		            
+			 
+			           
+		            }
+		            conn.close();  
+		    		return notelist;
+		    		
+		              
+		        } catch (SQLException e) {  
+		        	System.out.println(e);
+		            return null;
+		        }  
+			}
 			   public boolean deletePost(String commentlistid){
 				   int id=Integer.parseInt(commentlistid);
 				   Connection conn=ConnectSql();
@@ -244,11 +327,33 @@ public class SqlRecommend {
 						e.printStackTrace();
 						return false;
 					}
-				   
-				
-				  
+				    
 			   }
-			   
+			   public boolean deleteNote(String commentlistid){
+				   int id=Integer.parseInt(commentlistid);
+				   Connection conn=ConnectSql();
+				    Statement st;
+				   
+				   try{
+						
+						String sql = "delete from Note where CommentListId='"+id+"'";
+						String sql2="delete from CommentList where CommentListId='"+id+"'";
+						
+				        st = (Statement) conn.createStatement();
+				        st.executeUpdate(sql);
+				        st.executeUpdate(sql2);
+				        conn.close();
+				        return true;
+				       
+				   }
+				   
+				   catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+						return false;
+					}
+				    
+			   }
 				public List<Post> getPostById(String id)
 				{
 					int userid = Integer.parseInt(id);

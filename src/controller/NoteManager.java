@@ -1,22 +1,26 @@
 package controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 
-import model.SqlCourse;
-import model.Note;
-public class AddNote extends HttpServlet {
+
+import model.*;
+
+
+public class NoteManager extends HttpServlet {
 
 	/**
 	 * Constructor of the object.
 	 */
-	public AddNote() {
+	public NoteManager() {
 		super();
 	}
 
@@ -55,27 +59,12 @@ public class AddNote extends HttpServlet {
 	 */
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		 Note NewNote = new Note();
-		 String NoteUrl = request.getParameter("NoteURL");
-		 String NoteTitle = "Title";
-		 String courseAppId = request.getParameter("courseAppId");
-		 String uid = request.getParameter("userId");
-			System.out.println("Coursera Id: "+courseAppId);
-			System.out.println("myuserid: "+uid);
-		 SqlCourse csql = new SqlCourse();
-		 String courseId = csql.getCourseIdByAppId(courseAppId);
-		 String CommentListId = csql.findCommentListIdByUserAndCourse(uid, courseId,NoteUrl);
-	  //   String PostTitle = request.getParameter("PostTitle");
-	   //  Integer CommentListId = 100;
-	   //  Integer CommentListId = request.getParameter("CommentListId")toString();
-	     
-	     NewNote.setNoteURL(NoteUrl);
-	     NewNote.setNoteTitle(NoteTitle);
-	     NewNote.setCommentListId(CommentListId);
-	   
-	     Boolean res = csql.AddNote(NewNote);
-	     response.sendRedirect("GetCourse?cid="+courseAppId);
-	     
+		    SqlRecommend sql=new SqlRecommend();
+		    List<Note> notelist = (ArrayList<Note>) sql.readAllNote();
+		    HttpSession session = request.getSession(true);
+		    session.setAttribute("notelist", notelist);
+		  
+		//    List<Rank> RankList=(List<Rank>)request.getSession().getAttribute("postlist");
 	}
 
 	/**

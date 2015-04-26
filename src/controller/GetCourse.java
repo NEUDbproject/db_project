@@ -14,6 +14,7 @@ import library.Json;
 import model.Coursera;
 import model.CourseraAbstract;
 import model.CourseraSession;
+import model.Note;
 import model.Post;
 import model.SqlCourse;
 import model.SqlRecommend;
@@ -63,10 +64,9 @@ public class GetCourse extends HttpServlet {
 	    SqlRecommend sql =new SqlRecommend();
 	    
 	    List<Post> postlist = (ArrayList<Post>) sql.getPostByCourseId(cid);
-	    
-	    
+	    List<Note> notelist = (ArrayList<Note>) sql.getNoteByCourseId(cid);
 	    session.setAttribute("postlist", postlist);		
-	    
+	    session.setAttribute("notelist", notelist);
 		session.setAttribute("title", course.getName()+"|OCE");
 		System.out.println("Course Found: "+course.getName());
 		System.out.println("Course Instructor Found: "+course.getInstructor());

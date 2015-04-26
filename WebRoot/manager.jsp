@@ -389,37 +389,73 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     </div>
     <!-- 下面是Notes的内容 -->
     <div role="tabpanel" class="tab-pane" id="messages">   
-  	 <div class="table-responsive">
+               <div class="table-responsive">
+              
+             <% NoteManager notemanager = new NoteManager();  
+                notemanager.doGet(request, response);
+          %>
+              
+        <%  List<Note> NoteList=(List<Note>)request.getSession().getAttribute("notelist");%>
             <table class="table table-striped">
               <thead>
                 <tr>
-                  <th>User Id#</th>
-                  <th>CommentListId</th>
-                  <th>NoteTitle</th>
-                  <th>NoteContent</th>
-                  <th class=" text-center">Header</th>
+                  <th>User Id</th>
+                  <th>User Name</th>
+                  <th>Target Course Id</th>
+                  <th>Note URL</th>
+                  
+                  <th class=" text-center">Action</th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>1001</td>
-                  <td>Lorem</td>
-                  <td>ipsum</td>
-                  <td>dolor</td>
+               <%
+    		for(int i=0;i<NoteList.size();i++){
+    		
+    			Note newNote = new Note();
+    			newNote = NoteList.get(i);
+    			%><tr><%
+    			 
+    			%><td><%=newNote.getUserId() 
+    			%></td><% 
+
+				%>
+			       <td><%=newNote.getEmail()
+    			%></td>
+                  
+                  <% 	
+    			%>
+				<td><%=newNote.getCourseId() 
+    			%></td><% 	
+    			
+    			%>
+                  <td><%=newNote.getNoteURL() 
+    			%></td>
+                  
+                  <% 	
+    			
+    			%>
+    	          
+                  
                   <td>
-                  <div class="col-xs-offset-3">
+                  
+            <div class="col-xs-offset-4">
          			<!-- Button trigger modal -->
-		 <button class="btn btn-primary btn-xs" type="submit">Add</button>
-         <button class="btn btn-primary btn-xs" type="submit">Delete</button>
-         <button class="btn btn-primary btn-xs" type="submit">Edit</button>
+           
+		        <form method="get" action="DeleteNote">
+		    		
+		    	<button class="btn btn-primary btn-xs" type="submit" name="deletenoteid" value="<%=newNote.getCommentListId() %>" >delete</button>
+		    		
+		       </form>  
+		 			
 			</div>
+			
             </td>
                 </tr>
- 
 
 
-
-
+ 		     <% 
+    			} %>
+    			
                
               </tbody>
             </table>
